@@ -114,7 +114,7 @@ class Flower {
         ////////\\\\\\\\
         this.setPrice(price);
         this.setDeliveryDate(deliveryDateRRRRMMDD);
-        //Automatycznie wygenerowane "unikatowe" ID\\ *TODO*zrobić bardziej unikatowe
+        //Automatycznie wygenerowane "unikatowe" ID\\ *TODO*zrobić bardziej unikatowe, żeby bazowało na każdej cesze
         String iD;
         String[] parts = deliveryDateRRRRMMDD.split("");
         iD = parts[0] + parts[1] + parts[2] + parts[3] + parts[4] + parts[5] + parts[6] + parts[7]
@@ -138,8 +138,8 @@ class Flower {
     /////////////////////\\\\\\\\\\\\\\\\\\\\
 
     ////TEST\\\\
-    public static void main (String[] args) {
-        Flower Rose19122021 = new Flower("rose", "red", 30, 12.50F, "20211219");
-        System.out.println(Rose19122021);
-    }
+//    public static void main (String[] args) {
+//        Flower Rose19122021 = new Flower("rose", "red", 30, 12.50F, "20211219");
+//        System.out.println(Rose19122021);
+//    }
 }
