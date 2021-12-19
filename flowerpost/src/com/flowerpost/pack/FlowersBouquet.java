@@ -2,6 +2,7 @@ package com.flowerpost.pack;
 
 import java.util.Arrays;
 
+//*TODO* dodać wyjątek jeśli dodawany kwiat ma dostępność false\\
 public class FlowersBouquet {
 
     //Atrybuty obiektu klasy\\

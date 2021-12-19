@@ -2,6 +2,7 @@ package com.flowerpost.pack;
 
 import java.sql.Date;
 
+//*TODO*Dodać metodę potrafiącą podzielić obiekt na dwa obiekty. np. Mamy dwie róże => jedna róża + jedna róża
 class Flower {
 
     //Atrybuty klasy\\
@@ -62,7 +63,7 @@ class Flower {
         return deliveryDate;
     }
 
-    //Poprawiona metoda setDeliveryDate, żeby parametrem był String\\
+    //Poprawiona metoda setDeliveryDate, żeby parametrem był String, a nie Date Object\\
     public void setDeliveryDate(String deliveryDateRRRRMMDD) {
         String date;
         String[] parts = deliveryDateRRRRMMDD.split("");
