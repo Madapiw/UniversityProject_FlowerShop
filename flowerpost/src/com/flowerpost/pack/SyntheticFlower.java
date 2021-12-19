@@ -2,6 +2,20 @@ package com.flowerpost.pack;
 
 public class SyntheticFlower extends Flower{
 
+    @Override
+    public String toString() {
+        return "SyntheticFlower{" +
+                "name='" + name + '\'' +
+                ", colour='" + colour + '\'' +
+                ", quantity=" + quantity +
+                ", availability=" + availability +
+                ", price=" + price +
+                ", deliveryDate=" + deliveryDate +
+                ", id='" + id + '\'' +
+                ", materialType='" + materialType + '\'' +
+                '}';
+    }
+
     public String getMaterialType() {
         return materialType;
     }
