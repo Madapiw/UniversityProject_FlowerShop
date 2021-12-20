@@ -32,6 +32,8 @@ public class FlowersBouquet {
     }
     //////////////////\\\\\\\\\\\
 
+    //*TODO* Dodać metodę deleteFlower usuwającą określoną pozycję w bouquet.\\
+
     //Automatycznie wygenerowany toString\\\\\\\
     @Override
     public String toString() {
@@ -43,13 +45,13 @@ public class FlowersBouquet {
     ////////////\\\\\\\\\\\\\\\\
 
     //TEST\\
-//    public static void main (String[] args) {
-//        NaturalFlower Rose19122021 = new NaturalFlower("rose", "red", 30, 12.50F, "20211219", "20220119");
-//        FlowersBouquet RoseBouquet = new FlowersBouquet();
-//        RoseBouquet.addFlower(Rose19122021);
-//        SyntheticFlower DragonPlant = new SyntheticFlower("Dragon Plant", "Blue", "Plastik", 4, 3.50F, "20211220");
-//        RoseBouquet.addFlower(DragonPlant);
-//        System.out.println(RoseBouquet);
-//    }
+    public static void main (String[] args) {
+        NaturalFlower Rose19122021 = new NaturalFlower("rose", "red", 30, 12.50F, "20211219", "20220119");
+        FlowersBouquet RoseBouquet = new FlowersBouquet();
+        RoseBouquet.addFlower(Rose19122021);
+        SyntheticFlower DragonPlant = new SyntheticFlower("Dragon Plant", "Blue", "Plastik", 4, 3.50F, "20211220");
+        RoseBouquet.addFlower(DragonPlant);
+        System.out.println(RoseBouquet);
+    }
 }
 

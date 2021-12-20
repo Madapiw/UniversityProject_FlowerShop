@@ -144,3 +144,4 @@ class Flower {
 //        System.out.println(Rose19122021);
 //    }
 }
+//*TODO* Dodać sensowny equals
