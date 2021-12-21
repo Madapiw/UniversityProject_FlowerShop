@@ -7,8 +7,8 @@ public class Delivery {
 
     public Date deliveryDate;
     Flower[] deliveryItems = new Flower[0];
-    //*TODO*Zmienić typ deliveryDestination z String na Objekt nowej klasy\\
-    public String deliveryDestination;
+    //*TODO* [x] Zmienić typ deliveryDestination z String na Objekt nowej klasy\\
+    public Address deliveryDestination;
     public String id;
 
     //Gettery i Settery\\
@@ -17,7 +17,7 @@ public class Delivery {
     }
 
     //Poprawione analogicznie do klasy NaturalFlower\\
-    //*TODO* Dodać wyjątek, nie można ustawić daty w przeszłości, ale może być jeśli była ustawiona w momencie kiedy to była przyszłość\\
+    //*TODO* [ ] Dodać wyjątek, nie można ustawić daty w przeszłości, ale może być jeśli była ustawiona w momencie kiedy to była przyszłość\\
     public void setDeliveryDate(String deliveryDateRRRRMMDD) {
         String date;
         String[] parts = deliveryDateRRRRMMDD.split("");
@@ -26,11 +26,12 @@ public class Delivery {
     }
 
     public String getDeliveryDestination() {
-        return deliveryDestination;
+        return deliveryDestination.toString();
     }
 
-    public void setDeliveryDestination(String deliveryDestination) {
-        this.deliveryDestination = deliveryDestination;
+    //Poprawiano setter dla obiektu klasy address\\
+    public void setDeliveryDestination(String postalCode, String townName, String streetName, int buildingNumber) {
+        this.deliveryDestination.setAddress(postalCode,townName,streetName,buildingNumber);
     }
 
     public String getId() {
@@ -51,12 +52,12 @@ public class Delivery {
     }
     ///////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\
 
-    //*TODO* Dodać metodę usuwającą pozycję z zamówienia*\\
+    //*TODO* [ ] Dodać metodę usuwającą pozycję z zamówienia*\\
 
-    public Delivery(String deliveryDateRRRRMMDD, String deliveryDestination, String id) {
+    public Delivery(String deliveryDateRRRRMMDD, String postalCodeDestination, String townNameDestination, String streetNameDestination, int buildingNumberDestination, String id) {
         this.setDeliveryDate(deliveryDateRRRRMMDD);
-        this.deliveryDestination = deliveryDestination;
-        //Automatycznie wygenerowane "unikatowe" ID\\ *TODO*zrobić bardziej unikatowe, żeby bazowało na każdej cesze
+        this.setDeliveryDestination(postalCodeDestination, townNameDestination, streetNameDestination, buildingNumberDestination);
+        //Automatycznie wygenerowane "unikatowe" ID\\ *TODO* [ ] zrobić bardziej unikatowe, żeby bazowało na każdej cesze
         String iD;
         String[] parts = deliveryDateRRRRMMDD.split("");
         iD = parts[0] + parts[1] + parts[2] + parts[3] + parts[4] + parts[5] + parts[6] + parts[7]
@@ -64,5 +65,5 @@ public class Delivery {
         this.setId(iD);
     }
 }
-//*TODO*Dodać cechę cykliczne i związane z nią funkcjonalności
-//*TODO*Dodać metodę zrealizujDostawę(), która: dodaje zawartość zamówienia do określonego magazynu, w odpowiedni sposób przekształca pozycję w bazie danych(koncepcja)
+//*TODO* [ ] Dodać cechę cykliczne i związane z nią funkcjonalności
+//*TODO* [ ] Dodać metodę zrealizujDostawę(), która: dodaje zawartość zamówienia do określonego magazynu, w odpowiedni sposób przekształca pozycję w bazie danych(koncepcja)
