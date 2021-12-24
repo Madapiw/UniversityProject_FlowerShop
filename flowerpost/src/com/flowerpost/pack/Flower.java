@@ -67,8 +67,13 @@ class Flower {
     public void setDeliveryDate(String deliveryDateRRRRMMDD) {
         String date;
         String[] parts = deliveryDateRRRRMMDD.split("");
-        date = parts[0] + parts[1] + parts[2] + parts[3] + "-" + parts[4] + parts[5] + "-" + parts[6] + parts[7];
-        deliveryDate = Date.valueOf(date);
+        if(parts.length == 8){
+            date = parts[0] + parts[1] + parts[2] + parts[3] + "-" + parts[4] + parts[5] + "-" + parts[6] + parts[7];
+            deliveryDate = Date.valueOf(date);
+        }else {
+            deliveryDate = Date.valueOf("1970-01-01");
+        }
+
     }
 
     public String getId() {
@@ -116,11 +121,17 @@ class Flower {
         this.setPrice(price);
         this.setDeliveryDate(deliveryDateRRRRMMDD);
         //Automatycznie wygenerowane "unikatowe" ID\\ *TODO*zrobić bardziej unikatowe, żeby bazowało na każdej cesze
+        //Bardzo złe ID poniżej !!POPRAWIC!!\\
         String iD;
         String[] parts = deliveryDateRRRRMMDD.split("");
-        iD = parts[0] + parts[1] + parts[2] + parts[3] + parts[4] + parts[5] + parts[6] + parts[7]
-                + ((int)Math.floor(Math.random()*10)) + ((int)Math.floor(Math.random()*10)) + ((int)Math.floor(Math.random()*10));
+        if(parts.length == 8){
+            iD = parts[0] + parts[1] + parts[2] + parts[3] + parts[4] + parts[5] + parts[6] + parts[7]
+                    + ((int)Math.floor(Math.random()*10)) + ((int)Math.floor(Math.random()*10)) + ((int)Math.floor(Math.random()*10));
+        }else {
+            iD = "1997" + "01" + "01" + ((int)Math.floor(Math.random()*10)) + ((int)Math.floor(Math.random()*10)) + ((int)Math.floor(Math.random()*10));
+        }
         this.setId(iD);
+        ///////////////\\\\\\\\\\\\\\\\\
     }
 
     //Automatycznie wygenerowane toString()\\

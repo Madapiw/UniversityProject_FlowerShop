@@ -10,7 +10,7 @@ public class Order {
     Flower[] orderedFlowers = new Flower[0];
     FlowersBouquet[] orderedBouquets = new FlowersBouquet[0];
     public String id;
-    public Address orderExecutionAddress;
+    public Address orderExecutionAddress = new Address("", "", "", "");
     public String noteToOrder;
     public String noteToReceiver;
     public int price;
@@ -79,7 +79,7 @@ public class Order {
     }
 
     //Poprawiona metoda, żeby przyjmowała String\\
-    public void setOrderExecutionAddress(String postalCode, String townName, String streetName, int buildingNumber) {
+    public void setOrderExecutionAddress(String postalCode, String townName, String streetName, String buildingNumber) {
         this.orderExecutionAddress.setAddress(postalCode, townName, streetName, buildingNumber);
     }
 
@@ -118,7 +118,7 @@ public class Order {
     //*TODO* [ ] Zrobić działające equals i hashcode\\
 
     //Konstruktor poprawiony\\
-    public Order(String orderSubmitDateRRRRMMDD, String orderExecutionDateRRRRMMDD,String postalCode, String townName, String streetName, int buildingNumber, String noteToOrder, String noteToReceiver) {
+    public Order(String orderSubmitDateRRRRMMDD, String orderExecutionDateRRRRMMDD,String postalCode, String townName, String streetName, String buildingNumber, String noteToOrder, String noteToReceiver) {
         this.setOrderSubmitDate(orderSubmitDateRRRRMMDD);
         this.setOrderExecutionDate(orderExecutionDateRRRRMMDD);
         //Automatycznie wygenerowane "unikatowe" ID\\ *TODO* [ ] zrobić bardziej unikatowe, żeby bazowało na każdej cesze

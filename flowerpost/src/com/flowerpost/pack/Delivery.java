@@ -8,7 +8,7 @@ public class Delivery {
     public Date deliveryDate;
     Flower[] deliveryItems = new Flower[0];
     //*TODO* [x] Zmienić typ deliveryDestination z String na Objekt nowej klasy\\
-    public Address deliveryDestination;
+    public Address deliveryDestination = new Address("", "", "", "");
     public String id;
 
     //Gettery i Settery\\
@@ -30,7 +30,7 @@ public class Delivery {
     }
 
     //Poprawiano setter dla obiektu klasy address\\
-    public void setDeliveryDestination(String postalCode, String townName, String streetName, int buildingNumber) {
+    public void setDeliveryDestination(String postalCode, String townName, String streetName, String buildingNumber) {
         this.deliveryDestination.setAddress(postalCode,townName,streetName,buildingNumber);
     }
 
@@ -52,9 +52,16 @@ public class Delivery {
     }
     ///////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\
 
+    //Metoda nadająca deliveryDate każdemu z obiektów w deliveryItems\\
+    public void setDeliveryDateForAllItems(){
+        String[] parts = deliveryDate.toString().split("-");
+        for(Flower item : deliveryItems){
+            item.setDeliveryDate(parts[0] + parts[1] + parts[2]);
+        }
+    }
     //*TODO* [ ] Dodać metodę usuwającą pozycję z zamówienia*\\
 
-    public Delivery(String deliveryDateRRRRMMDD, String postalCodeDestination, String townNameDestination, String streetNameDestination, int buildingNumberDestination, String id) {
+    public Delivery(String deliveryDateRRRRMMDD, String postalCodeDestination, String townNameDestination, String streetNameDestination, String buildingNumberDestination) {
         this.setDeliveryDate(deliveryDateRRRRMMDD);
         this.setDeliveryDestination(postalCodeDestination, townNameDestination, streetNameDestination, buildingNumberDestination);
         //Automatycznie wygenerowane "unikatowe" ID\\ *TODO* [ ] zrobić bardziej unikatowe, żeby bazowało na każdej cesze
@@ -66,4 +73,4 @@ public class Delivery {
     }
 }
 //*TODO* [ ] Dodać cechę cykliczne i związane z nią funkcjonalności
-//*TODO* [ ] Dodać metodę zrealizujDostawę(), która: dodaje zawartość zamówienia do określonego magazynu, w odpowiedni sposób przekształca pozycję w bazie danych(koncepcja)
+//*TODO* [X] Dodać metodę zrealizujDostawę(), która: dodaje zawartość zamówienia do określonego magazynu, w odpowiedni sposób przekształca pozycję w bazie danych(koncepcja)

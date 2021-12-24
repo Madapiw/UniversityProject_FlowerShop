@@ -5,7 +5,7 @@ public class Address {
     public String postalCode;
     public String townName;
     public String streetName;
-    public int buildingNumber;
+    public String buildingNumber;
 
     public String getPostalCode() {
         return postalCode;
@@ -31,22 +31,22 @@ public class Address {
         this.streetName = streetName;
     }
 
-    public int getBuildingNumber() {
+    public String getBuildingNumber() {
         return buildingNumber;
     }
 
-    public void setBuildingNumber(int buildingNumber) {
+    public void setBuildingNumber(String buildingNumber) {
         this.buildingNumber = buildingNumber;
     }
 
-    public Address(String postalCode, String townName, String streetName, int buildingNumber) {
+    public Address(String postalCode, String townName, String streetName, String buildingNumber) {
         this.postalCode = postalCode;
         this.townName = townName;
         this.streetName = streetName;
         this.buildingNumber = buildingNumber;
     }
 
-    public void setAddress(String postalCode, String townName, String streetName, int buildingNumber){
+    public void setAddress(String postalCode, String townName, String streetName, String buildingNumber){
         this.postalCode = postalCode;
         this.townName = townName;
         this.streetName = streetName;
@@ -57,7 +57,7 @@ public class Address {
         this.postalCode = "";
         this.townName = "";
         this.streetName = "";
-        this.buildingNumber = -1;
+        this.buildingNumber = "";
     }
 
     @Override
