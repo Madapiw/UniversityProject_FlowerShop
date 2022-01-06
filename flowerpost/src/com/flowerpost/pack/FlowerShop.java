@@ -92,8 +92,7 @@ public class FlowerShop {
         Date today = new Date();
         NaturalFlower[] utilizedFlowers = new NaturalFlower[0];
         try{
-            for (int i = 0, stockLength = stock.length; i < stockLength; i++) {
-                Flower flower = stock[i];
+            for (Flower flower : stock) {
                 if (((NaturalFlower) flower).getDisposalDate().before(today)) {
                     int newArraySize = utilizedFlowers.length + 1;
                     NaturalFlower[] biggerUtylizedFlowers = new NaturalFlower[newArraySize];
@@ -101,7 +100,7 @@ public class FlowerShop {
                     biggerUtylizedFlowers[newArraySize - 1] = ((NaturalFlower) flower);
                     utilizedFlowers = biggerUtylizedFlowers;
 
-                    stock[i] = null;
+                    flower.setAvailability(false);
                 }
             }
         } catch (Exception ignore) { } //Funkcja zwraca wyjątki ponieważ możemy starać sie wywołać getUtilizeDate dla SynthethicFlower
@@ -109,15 +108,32 @@ public class FlowerShop {
     }
 
     //Metoda "realizująca dostawę" czyli przenosząca obiekty Flower z deliveryItems do stock i zmieniająca avalibility na true.
-    //*TODO* [ ]  Dodać błąd kiedy próbuje się zrealizować dostawę nie w tej kwiacierni, albo nie tego dnia.
-    public void takeDelivery(Delivery delivery){
+    //*TODO* [ ]  Dodać błąd kiedy próbuje się zrealizować dostawę nie w tej kwiacierni.
+    //*TODO* [X]  Zmienić działanie funkcji, aby jedynie zmieniała dostępność anego obiektu Flower w magazynie, zmieana do późniejszej implementacji raport\\
+    public void addDelivery(Delivery delivery){
         int ammountOfItems = delivery.deliveryItems.length;
         for(Flower item : delivery.deliveryItems){
-            item.setAvailability(true);
             this.addFlowerToStock(item);
         }
     }
 
+    //Metoda zmieniająca dostępność kwiatów z dzisiejszych dostaw\\//*TODO* [ ] Nie działa, naprawić trzebas
+    public String checkDelivery(){
+        Date today = new Date();
+        Flower[] deliveredFlowers = new Flower[0];
+        for (Flower flower : stock) {
+            if (((Flower) flower).getDeliveryDate().before(today) || ((Flower) flower).getDeliveryDate().equals(today)) {
+                int newArraySize = deliveredFlowers.length + 1;
+                Flower[] biggerDeliveredFlowers = new Flower[newArraySize];
+                System.arraycopy(deliveredFlowers, 0, biggerDeliveredFlowers, 0, deliveredFlowers.length);
+                biggerDeliveredFlowers[newArraySize - 1] = ((Flower) flower);
+                deliveredFlowers = biggerDeliveredFlowers;
+
+                flower.setAvailability(false);
+            }
+        }
+        return (Arrays.toString(deliveredFlowers));
+    }
     //Metoda "realizująca zamówienie\\ czyli na podstawie parametrów tworząca obiekt zamówienia i usuwająca kwiaty z magazynu.\\
     //Jeśli nie ma wystarczającej ilości, zwracany jest błąd.\\
     //*TODO*^^^^^
@@ -148,7 +164,8 @@ public class FlowerShop {
         delivery.addFlower(PlasticRoseBlue);
         delivery.setDeliveryDateForAllItems();
         System.out.println(Arrays.toString(delivery.deliveryItems));
-        GunNRoses.takeDelivery(delivery);
+        GunNRoses.addDelivery(delivery);
+        GunNRoses.checkDelivery();
         System.out.println(Arrays.toString(GunNRoses.stock));
 
     }
