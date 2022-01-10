@@ -10,7 +10,7 @@ class Flower {
     public String name;
     public String colour;
     public int quantity;
-    public boolean availability;
+    public boolean availability = false;
     public float price;
     public Date deliveryDate;
     public String id; //*TODO*Czy nie powinna być "final"?
@@ -111,7 +111,7 @@ class Flower {
                   float price,
                   String deliveryDateRRRRMMDD){
         //Domyślne ustawienie dostępności na "false". *TODO*Czy da się w parametrach?\\
-        this.availability = false;
+        //this.availability = false;
         //////////////\\\\\\\\\\\\\\\\\
         this.setName(name);
         this.setColour(colour);

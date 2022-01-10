@@ -2,6 +2,7 @@ package com.flowerpost.pack;
 
 import org.json.*;
 
+import java.util.Arrays;
 import java.util.Objects;
 
 public class File {
@@ -51,14 +52,15 @@ public class File {
             //FlowerShop PhoneNumber to json
             flowershop.put("phoneNumber",Fshop.phoneNumber);
             //FlowerShop Stock to json
-            for (Flower flower : Fshop.stock) {
-                FlowerJson.put("id",flower.id);
-                FlowerJson.put("name",flower.name);
-                FlowerJson.put("colour",flower.colour);
-                FlowerJson.put("quantity",flower.quantity);
-                FlowerJson.put("availability",flower.availability);
-                FlowerJson.put("price",flower.price);
-                FlowerJson.put("deliveryDate",flower.deliveryDate);
+            for (Flower flower: Fshop.stock) { // Poprawić, dostać sie do class NaturalFlower i SyntheticFlower
+                FlowerJson.put("id", flower.id);
+                FlowerJson.put("name", flower.name);
+                FlowerJson.put("colour", flower.colour);
+                FlowerJson.put("quantity", flower.quantity);
+                FlowerJson.put("availability", flower.availability);
+                FlowerJson.put("price", flower.price);
+                FlowerJson.put("deliveryDate", flower.deliveryDate);
+                //FlowerJson.put("disposalDate",((NaturalFlower) flower).disposalDate);
                 FlowersJson.put(FlowerJson);
             }
             flowershop.put("Flowers",FlowersJson);
@@ -82,7 +84,8 @@ public class File {
         GunNRoses.addFlowerToStock(Rose12122021);
         GunNRoses.addFlowerToStock(Rose19122021);
         GunNRoses.addFlowerToStock(PlasticRose);
-
+        System.out.println(Arrays.toString(GunNRoses.stock));
+        System.out.println("#############################################################");
         ////TEST JSON\\\\
         File FlowerShopsDB = new File();
         System.out.println(FlowerShopsDB.SaveToJson(GunNRoses,"GunNRosses"));
