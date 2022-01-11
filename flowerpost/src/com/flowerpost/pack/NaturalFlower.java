@@ -24,12 +24,12 @@ public class NaturalFlower extends Flower{
     //////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
     //Metoda utilize ustawia ilość kwiatów na 0, przy założeniu że data utylizacji była conajmniej dzisiaj.\\
-    //*TODO* dodać funkcję do bazy danych która będzie usuwać pozycje z @param quantity = 0\\
+    //*TODO* dodać funkcję do bazy danych która będzie usuwać pozycje z @param quantity = 0 (Czy napewno???)\\
     public void utilize(){
         long milis = System.currentTimeMillis();
         Date today = new Date(milis);
         if(disposalDate.before(today)){
-            this.setQuantity(0);
+            this.setAvailability(false);
         }
     }
 

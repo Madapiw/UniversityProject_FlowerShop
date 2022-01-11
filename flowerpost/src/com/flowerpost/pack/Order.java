@@ -2,7 +2,6 @@ package com.flowerpost.pack;
 
 import java.sql.Date;
 import java.util.Arrays;
-import java.util.Objects;
 
 public class Order {
     public Date orderSubmitDate;
@@ -13,12 +12,12 @@ public class Order {
     public Address orderExecutionAddress = new Address("", "", "", "");
     public String noteToOrder;
     public String noteToReceiver;
-    public int price;
+    public float price;
 
     //Gettery i Settery\\
 
 
-    public int getPrice() {
+    public float getPrice() {
         return price;
     }
 
@@ -140,6 +139,7 @@ public class Order {
         System.arraycopy(this.orderedBouquets, 0, biggerArray, 0, orderedBouquets.length);
         biggerArray[newArraySize - 1] = bouquet;
         this.orderedBouquets = biggerArray;
+        price = price + bouquet.getCena();
     }
 
     //Metoda dodająca podany w parametrze kwiat do zamówienia\\
@@ -149,6 +149,7 @@ public class Order {
         System.arraycopy(this.orderedFlowers, 0, biggerArray, 0, orderedFlowers.length);
         biggerArray[newArraySize - 1] = flowers;
         this.orderedFlowers = biggerArray;
+        price = price + (flowers.getPrice() * flowers.getQuantity());
     }
 
     //Metoda czyszcząca całe zamówienie\\
