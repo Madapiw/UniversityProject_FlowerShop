@@ -39,7 +39,6 @@ public class SyntheticFlower extends Flower{
     public JSONObject toJson(){
         JSONObject SyntheticFlowersJsonObj = new JSONObject();
         try {
-
             SyntheticFlowersJsonObj.put("id", this.id);
             SyntheticFlowersJsonObj.put("name", this.name);
             SyntheticFlowersJsonObj.put("colour", this.colour);

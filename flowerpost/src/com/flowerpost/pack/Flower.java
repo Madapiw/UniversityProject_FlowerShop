@@ -1,5 +1,8 @@
 package com.flowerpost.pack;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.sql.Date;
 
 //*TODO*Dodać metodę potrafiącą podzielić obiekt na dwa obiekty. np. Mamy dwie róże => jedna róża + jedna róża
@@ -132,6 +135,22 @@ class Flower {
         }
         this.setId(iD);
         ///////////////\\\\\\\\\\\\\\\\\
+    }
+
+    public JSONObject toJson(){
+        JSONObject FlowersJsonObj = new JSONObject();
+        try {
+            FlowersJsonObj.put("id", this.id);
+            FlowersJsonObj.put("name", this.name);
+            FlowersJsonObj.put("colour", this.colour);
+            FlowersJsonObj.put("quantity", this.quantity);
+            FlowersJsonObj.put("availability", this.availability);
+            FlowersJsonObj.put("price", this.price);
+            FlowersJsonObj.put("deliveryDate", this.deliveryDate);
+        }catch( JSONException exception){
+            exception.printStackTrace();
+        }
+        return  FlowersJsonObj;
     }
 
     //Automatycznie wygenerowane toString()\\

@@ -7,28 +7,31 @@
             "postalCode": "98101",
             "buildingNumber": "27"
         },
-        "Flowers": [{
-            "colour": "white",
-            "quantity": 15,
-            "price": 7.5,
+        "Flowers stock": [{
+            "colour": "red",
+            "quantity": 13,
+            "price": 12.5,
             "name": "rose",
-            "id": "20211219261",
+            "disposalDate": "2021-12-20",
+            "id": "20211212905",
+            "availability": true,
+            "deliveryDate": "2021-12-12"
+        }, {
+            "colour": "red",
+            "quantity": 30,
+            "price": 12.5,
+            "name": "rose",
+            "disposalDate": "2022-01-19",
+            "id": "20211219981",
             "availability": true,
             "deliveryDate": "2021-12-19"
         }, {
             "colour": "white",
             "quantity": 15,
             "price": 7.5,
+            "materialType": "plastic",
             "name": "rose",
-            "id": "20211219261",
-            "availability": true,
-            "deliveryDate": "2021-12-19"
-        }, {
-            "colour": "white",
-            "quantity": 15,
-            "price": 7.5,
-            "name": "rose",
-            "id": "20211219261",
+            "id": "20211219685",
             "availability": true,
             "deliveryDate": "2021-12-19"
         }]

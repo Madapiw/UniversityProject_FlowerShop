@@ -38,9 +38,7 @@ public class File {
         JSONObject FlowerShops = new JSONObject(); // main
         JSONObject flowershop = new JSONObject(); // secondary
         JSONObject FlowerShopAddress = new JSONObject();
-        JSONObject FlowerShopStock = new JSONObject();
         JSONArray FlowersJson = new JSONArray();
-        JSONObject FlowerJson = new JSONObject();
         try {
             //FlowerShop Address to json
             FlowerShopAddress.put("postalCode", Fshop.flowerShopAddress.postalCode);
@@ -52,18 +50,10 @@ public class File {
             //FlowerShop PhoneNumber to json
             flowershop.put("phoneNumber",Fshop.phoneNumber);
             //FlowerShop Stock to json
-            for (Flower flower: Fshop.stock) { // Poprawić, dostać sie do class NaturalFlower i SyntheticFlower
-                FlowerJson.put("id", flower.id);
-                FlowerJson.put("name", flower.name);
-                FlowerJson.put("colour", flower.colour);
-                FlowerJson.put("quantity", flower.quantity);
-                FlowerJson.put("availability", flower.availability);
-                FlowerJson.put("price", flower.price);
-                FlowerJson.put("deliveryDate", flower.deliveryDate);
-                //FlowerJson.put("disposalDate",((NaturalFlower) flower).disposalDate);
-                FlowersJson.put(FlowerJson);
+            for(Flower flower : Fshop.stock){
+                FlowersJson.put(flower.toJson());
             }
-            flowershop.put("Flowers",FlowersJson);
+            flowershop.put("Flowers stock",FlowersJson);
         }
         catch(JSONException exception) {
             exception.printStackTrace();

@@ -52,7 +52,6 @@ public class NaturalFlower extends Flower{
     public JSONObject toJson(){
         JSONObject NaturalFlowersJsonObj = new JSONObject();
         try {
-
             NaturalFlowersJsonObj.put("id", this.id);
             NaturalFlowersJsonObj.put("name", this.name);
             NaturalFlowersJsonObj.put("colour", this.colour);
