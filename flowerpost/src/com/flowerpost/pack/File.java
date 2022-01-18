@@ -34,6 +34,8 @@ public class File {
         Deliveries = deliveries;
     }
 
+    //*TODO* [] Zapis wszystkiego do jednego pliku json.
+    //*TODO* [] Dopisanie do klas metod toJson().
     public JSONObject SaveToJson(FlowerShop Fshop, String FlowerShopName) throws JSONException{
         JSONObject FlowerShops = new JSONObject(); // main
         JSONObject flowershop = new JSONObject(); // secondary
