@@ -1,11 +1,15 @@
 package com.flowerpost.pack;
 
 import java.sql.Date;
+import java.time.LocalDateTime;
+import java.util.Objects;
+import org.json.*;
 
 public class NaturalFlower extends Flower{
 
     //Dodatkowy parametr\\
     public Date disposalDate;
+    private JSONException err;
     //////////\\\\\\\\\\\
 
     //Getter i Setter\\
@@ -19,7 +23,13 @@ public class NaturalFlower extends Flower{
         String date;
         String[] parts = disposalDateRRRRMMDD.split("");
         date = parts[0] + parts[1] + parts[2] + parts[3] + "-" + parts[4] + parts[5] + "-" + parts[6] + parts[7];
-        disposalDate = Date.valueOf(date);
+        String today = String.valueOf(LocalDateTime.now()).split("T")[0];
+        if(!Objects.equals(today, date)){
+            disposalDate = Date.valueOf(date);
+        }
+        else{
+            System.out.println(today);
+        }
     }
     //////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
@@ -39,6 +49,24 @@ public class NaturalFlower extends Flower{
         this.setDisposalDate(disposalDateRRRRMMDD);
     }
 
+    public JSONObject toJson(){
+        JSONObject NaturalFlowersJsonObj = new JSONObject();
+        try {
+
+            NaturalFlowersJsonObj.put("id", this.id);
+            NaturalFlowersJsonObj.put("name", this.name);
+            NaturalFlowersJsonObj.put("colour", this.colour);
+            NaturalFlowersJsonObj.put("quantity", this.quantity);
+            NaturalFlowersJsonObj.put("availability", this.availability);
+            NaturalFlowersJsonObj.put("price", this.price);
+            NaturalFlowersJsonObj.put("deliveryDate", this.deliveryDate);
+            NaturalFlowersJsonObj.put("disposalDate", this.disposalDate);
+        }catch( JSONException exception){
+            exception.printStackTrace();
+        }
+        return  NaturalFlowersJsonObj;
+    }
+
     @Override
     public String toString() {
         return "NaturalFlower{" +
@@ -54,8 +82,9 @@ public class NaturalFlower extends Flower{
     }
 
     ////TEST\\\\
-//    public static void main (String[] args) {
-//        NaturalFlower Rose19122021 = new NaturalFlower("rose", "red", 30, 12.50F, "20211219", "20220119");
+    public static void main (String[] args) {
+        NaturalFlower Rose19122021 = new NaturalFlower("rose", "red", 30, 12.50F, "20211219", "20220119");
 //        System.out.println(Rose19122021);
-//    }
+        Rose19122021.setDisposalDate("20220118");
+    }
 }

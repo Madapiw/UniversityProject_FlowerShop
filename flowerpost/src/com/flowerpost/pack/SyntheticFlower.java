@@ -1,5 +1,8 @@
 package com.flowerpost.pack;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class SyntheticFlower extends Flower{
 
     @Override
@@ -32,4 +35,23 @@ public class SyntheticFlower extends Flower{
         this.setMaterialType(materialType);
 
     }
+
+    public JSONObject toJson(){
+        JSONObject SyntheticFlowersJsonObj = new JSONObject();
+        try {
+
+            SyntheticFlowersJsonObj.put("id", this.id);
+            SyntheticFlowersJsonObj.put("name", this.name);
+            SyntheticFlowersJsonObj.put("colour", this.colour);
+            SyntheticFlowersJsonObj.put("quantity", this.quantity);
+            SyntheticFlowersJsonObj.put("availability", this.availability);
+            SyntheticFlowersJsonObj.put("price", this.price);
+            SyntheticFlowersJsonObj.put("deliveryDate", this.deliveryDate);
+            SyntheticFlowersJsonObj.put("materialType", this.materialType);
+        }catch( JSONException exception){
+            exception.printStackTrace();
+        }
+        return  SyntheticFlowersJsonObj;
+    }
+
 }
