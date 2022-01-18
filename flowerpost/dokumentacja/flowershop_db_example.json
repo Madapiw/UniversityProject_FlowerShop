@@ -1,0 +1,36 @@
+{
+    "GunNRosses": {
+        "phoneNumber": 222123456,
+        "Address": {
+            "townName": "Seattle",
+            "streetName": "Cobain",
+            "postalCode": "98101",
+            "buildingNumber": "27"
+        },
+        "Flowers": [{
+            "colour": "white",
+            "quantity": 15,
+            "price": 7.5,
+            "name": "rose",
+            "id": "20211219261",
+            "availability": true,
+            "deliveryDate": "2021-12-19"
+        }, {
+            "colour": "white",
+            "quantity": 15,
+            "price": 7.5,
+            "name": "rose",
+            "id": "20211219261",
+            "availability": true,
+            "deliveryDate": "2021-12-19"
+        }, {
+            "colour": "white",
+            "quantity": 15,
+            "price": 7.5,
+            "name": "rose",
+            "id": "20211219261",
+            "availability": true,
+            "deliveryDate": "2021-12-19"
+        }]
+    }
+}
