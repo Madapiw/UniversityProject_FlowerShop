@@ -155,7 +155,8 @@ public class FlowerShop {
         noteToReceiver = scanner.nextLine();
         Order order = new Order("20201212", orderExecutionDate, postalCode, townName, streetName, buildingNumber, noteToOrder, noteToReceiver);
         order.orderSubmitDate = orderSubmitDateSql;
-        System.out.println(order);
+
+
     }
 
 
