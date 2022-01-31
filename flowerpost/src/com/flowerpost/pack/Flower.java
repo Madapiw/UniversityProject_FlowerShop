@@ -86,7 +86,7 @@ class Flower {
     public String getId() {
         return id;
     }
-    
+
     ///////////////////////\\\\\\\\\\\\\\\\\\\\
     //Konstruktor\\
     public Flower(String name,
