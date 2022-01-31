@@ -6,7 +6,7 @@ import java.util.Arrays;
 public class Order {
     public Date orderSubmitDate;
     public Date orderExecutionDate;
-    Flower[] orderedFlowers = new Flower[0];
+    Flowers[] orderedFlowers = new Flowers[0];
     FlowersBouquet[] orderedBouquets = new FlowersBouquet[0];
     public String id;
     public Address orderExecutionAddress = new Address("", "", "", "");
@@ -49,11 +49,11 @@ public class Order {
         orderExecutionDate = Date.valueOf(date);
     }
 
-    public Flower[] getOrderedFlowers() {
+    public Flowers[] getOrderedFlowers() {
         return orderedFlowers;
     }
 
-    public void setOrderedFlowers(Flower[] orderedFlowers) {
+    public void setOrderedFlowers(Flowers[] orderedFlowers) {
         this.orderedFlowers = orderedFlowers;
     }
 
@@ -143,9 +143,9 @@ public class Order {
     }
 
     //Metoda dodająca podany w parametrze kwiat do zamówienia\\
-    public void addFlowersToOrder(Flower flowers){
+    public void addFlowersToOrder(Flowers flowers){
         int newArraySize = this.orderedFlowers.length + 1;
-        Flower[] biggerArray = new Flower[newArraySize];
+        Flowers[] biggerArray = new Flowers[newArraySize];
         System.arraycopy(this.orderedFlowers, 0, biggerArray, 0, orderedFlowers.length);
         biggerArray[newArraySize - 1] = flowers;
         this.orderedFlowers = biggerArray;
@@ -162,7 +162,7 @@ public class Order {
         Date dateZero = Date.valueOf("1970-01-01");
         this.orderExecutionDate = dateZero;
         this.orderSubmitDate = dateZero;
-        this.orderedFlowers = new Flower[0];
+        this.orderedFlowers = new Flowers[0];
         this.orderedBouquets = new FlowersBouquet[0];
     }
 

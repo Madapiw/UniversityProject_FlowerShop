@@ -6,7 +6,7 @@ import java.util.Arrays;
 public class FlowersBouquet {
 
     //Atrybuty obiektu klasy\\
-    Flower[] bouquet = new Flower[0];
+    Flowers[] bouquet = new Flowers[0];
     public float cena;
     //////////////\\\\\\\\\\\\
 
@@ -21,14 +21,14 @@ public class FlowersBouquet {
     ////////////\\\\\\\\\\\\\\\\\\
 
     //Metoda dodająca kwiat do bukietu, aktualizuje również jego cenę.\\
-    public void addFlower(Flower flower){
+    public void addFlower(Flowers flowers){
         int newArraySize = this.bouquet.length + 1;
-        Flower[] biggerArray = new Flower[newArraySize];
+        Flowers[] biggerArray = new Flowers[newArraySize];
         System.arraycopy(this.bouquet, 0, biggerArray, 0, bouquet.length);
-        biggerArray[newArraySize - 1] = flower;
+        biggerArray[newArraySize - 1] = flowers;
         this.bouquet = biggerArray;
 
-        this.setCena(this.getCena() + (flower.price * flower.quantity));
+        this.setCena(this.getCena() + (flowers.price * flowers.quantity));
     }
     //////////////////\\\\\\\\\\\
 

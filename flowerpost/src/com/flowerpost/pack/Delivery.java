@@ -6,7 +6,7 @@ public class Delivery {
 
 
     public Date deliveryDate;
-    Flower[] deliveryItems = new Flower[0];
+    Flowers[] deliveryItems = new Flowers[0];
     //*TODO* [x] Zmienić typ deliveryDestination z String na Objekt nowej klasy\\
     public Address deliveryDestination = new Address("", "", "", "");
     public String id;
@@ -43,11 +43,11 @@ public class Delivery {
     }
 
     //Metoda analogiczna do metody z FlowerBouquet\\
-    public void addFlower(Flower flower) {
+    public void addFlower(Flowers flowers) {
         int newArraySize = this.deliveryItems.length + 1;
-        Flower[] biggerArray = new Flower[newArraySize];
+        Flowers[] biggerArray = new Flowers[newArraySize];
         System.arraycopy(this.deliveryItems, 0, biggerArray, 0, deliveryItems.length);
-        biggerArray[newArraySize - 1] = flower;
+        biggerArray[newArraySize - 1] = flowers;
         this.deliveryItems = biggerArray;
     }
     ///////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\
@@ -55,7 +55,7 @@ public class Delivery {
     //Metoda nadająca deliveryDate każdemu z obiektów w deliveryItems\\
     public void setDeliveryDateForAllItems(){
         String[] parts = deliveryDate.toString().split("-");
-        for(Flower item : deliveryItems){
+        for(Flowers item : deliveryItems){
             item.setDeliveryDate(parts[0] + parts[1] + parts[2]);
         }
     }

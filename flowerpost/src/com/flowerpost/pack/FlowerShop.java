@@ -8,7 +8,7 @@ public class FlowerShop {
     //Atrybuty Klasy\\
     public Address flowerShopAddress = new Address("", "", "", "");
     public int phoneNumber;
-    Flower[] stock = new Flower[0];
+    Flowers[] stock = new Flowers[0];
 
     //Gettery i Settery\\
     public Address getFlowerShopAddress() {
@@ -27,11 +27,11 @@ public class FlowerShop {
         this.phoneNumber = phoneNumber;
     }
 
-    public Flower[] getStock() {
+    public Flowers[] getStock() {
         return stock;
     }
 
-    public void setStock(Flower[] stock) {
+    public void setStock(Flowers[] stock) {
         this.stock = stock;
     }
 
@@ -42,11 +42,11 @@ public class FlowerShop {
     }
 
     //Metoda dodająca pozycję do magazynu\\
-    public void addFlowerToStock(Flower flowerObject) {
+    public void addFlowerToStock(Flowers flowersObject) {
         int newArraySize = this.stock.length + 1;
-        Flower[] biggerArray = new Flower[newArraySize];
+        Flowers[] biggerArray = new Flowers[newArraySize];
         System.arraycopy(this.stock, 0, biggerArray, 0, stock.length);
-        biggerArray[newArraySize - 1] = flowerObject;
+        biggerArray[newArraySize - 1] = flowersObject;
         this.stock = biggerArray;
     }
 
@@ -60,27 +60,27 @@ public class FlowerShop {
     }
 
     //Metoda usuwająca kawiaty z obiektu zawartego w liście, spełniającego minimum zawarte w opisie\\
-    public void removeFlowerFromAvailableStockObject(Flower flower) {
-        for (Flower flowerStocked : this.stock) {
-            if (Objects.equals(flowerStocked.name, flower.name)
-                    && Objects.equals(flowerStocked.colour, flower.colour)
-                    && Objects.equals(flowerStocked.availability, flower.availability)
-                    && Objects.equals(flowerStocked.availability, true)
-                    && (flowerStocked.quantity >= flower.quantity)) {
-                flowerStocked.quantity = flowerStocked.quantity - flower.quantity;
+    public void removeFlowerFromAvailableStockObject(Flowers flowers) {
+        for (Flowers flowersStocked : this.stock) {
+            if (Objects.equals(flowersStocked.name, flowers.name)
+                    && Objects.equals(flowersStocked.colour, flowers.colour)
+                    && Objects.equals(flowersStocked.availability, flowers.availability)
+                    && Objects.equals(flowersStocked.availability, true)
+                    && (flowersStocked.quantity >= flowers.quantity)) {
+                flowersStocked.quantity = flowersStocked.quantity - flowers.quantity;
                 break;
             }
         }
     }
 
     //Metoda sprawdzająca czy jest na stanie Obiekt kwiat spełniający założenia\\
-    public boolean checkFlowerFromStockObject(Flower flower) {
-        for (Flower flowerStocked : this.stock) {
-            if (Objects.equals(flowerStocked.name, flower.name)
-                    && Objects.equals(flowerStocked.colour, flower.colour)
-                    && Objects.equals(flowerStocked.availability, flower.availability)
-                    && Objects.equals(flowerStocked.availability, true)
-                    && (flowerStocked.quantity >= flower.quantity)) {
+    public boolean checkFlowerFromStockObject(Flowers flowers) {
+        for (Flowers flowersStocked : this.stock) {
+            if (Objects.equals(flowersStocked.name, flowers.name)
+                    && Objects.equals(flowersStocked.colour, flowers.colour)
+                    && Objects.equals(flowersStocked.availability, flowers.availability)
+                    && Objects.equals(flowersStocked.availability, true)
+                    && (flowersStocked.quantity >= flowers.quantity)) {
                 return true;
             }
         }
@@ -92,16 +92,16 @@ public class FlowerShop {
         Date today = new Date();
         NaturalFlower[] utilizedFlowers = new NaturalFlower[0];
         try{
-            for (Flower flower : stock) {
+            for (Flowers flowers : stock) {
 //                System.out.println(((NaturalFlower) flower).getDisposalDate() + " ||| " + today);
-                if (((NaturalFlower) flower).getDisposalDate().before(today)) {
+                if (((NaturalFlower) flowers).getDisposalDate().before(today)) {
                     int newArraySize = utilizedFlowers.length + 1;
                     NaturalFlower[] biggerUtylizedFlowers = new NaturalFlower[newArraySize];
                     System.arraycopy(utilizedFlowers, 0, biggerUtylizedFlowers, 0, utilizedFlowers.length);
-                    biggerUtylizedFlowers[newArraySize - 1] = ((NaturalFlower) flower);
+                    biggerUtylizedFlowers[newArraySize - 1] = ((NaturalFlower) flowers);
                     utilizedFlowers = biggerUtylizedFlowers;
 
-                    flower.setAvailability(false);
+                    flowers.setAvailability(false);
                 }
             }
         } catch (Exception ignore) { } //Funkcja zwraca wyjątki ponieważ możemy starać sie wywołać getUtilizeDate dla SynthethicFlower
@@ -113,7 +113,7 @@ public class FlowerShop {
     //*TODO* [X]  Zmienić działanie funkcji, aby jedynie zmieniała dostępność anego obiektu Flower w magazynie, zmieana do późniejszej implementacji raport\\
     public void addDelivery(Delivery delivery){
         int ammountOfItems = delivery.deliveryItems.length;
-        for(Flower item : delivery.deliveryItems){
+        for(Flowers item : delivery.deliveryItems){
             this.addFlowerToStock(item);
         }
     }
@@ -121,17 +121,17 @@ public class FlowerShop {
     //Metoda zmieniająca dostępność kwiatów z dzisiejszych dostaw\\//*TODO* [X] Nie działa, naprawić trzebas
     public String checkDelivery(){
         Date today = new Date();
-        Flower[] deliveredFlowers = new Flower[0];
-        for (Flower flower : stock) {
+        Flowers[] deliveredFlowers = new Flowers[0];
+        for (Flowers flowers : stock) {
 //            System.out.println(flower.getDeliveryDate() + "   |||    " + today);
-            if ((flower).getDeliveryDate().before(today) || (flower).getDeliveryDate().equals(today)) {
+            if ((flowers).getDeliveryDate().before(today) || (flowers).getDeliveryDate().equals(today)) {
                 int newArraySize = deliveredFlowers.length + 1;
-                Flower[] biggerDeliveredFlowers = new Flower[newArraySize];
+                Flowers[] biggerDeliveredFlowers = new Flowers[newArraySize];
                 System.arraycopy(deliveredFlowers, 0, biggerDeliveredFlowers, 0, deliveredFlowers.length);
-                biggerDeliveredFlowers[newArraySize - 1] = ((Flower) flower);
+                biggerDeliveredFlowers[newArraySize - 1] = ((Flowers) flowers);
                 deliveredFlowers = biggerDeliveredFlowers;
 
-                flower.setAvailability(true);
+                flowers.setAvailability(true);
             }
         }
         return (Arrays.toString(deliveredFlowers));
