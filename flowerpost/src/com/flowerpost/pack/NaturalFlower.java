@@ -4,37 +4,12 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.sql.Date;
-import java.time.LocalDateTime;
-import java.util.Objects;
 
 public class NaturalFlower extends Flowers{
 
     //Dodatkowy parametr\\
-    public Date disposalDate;
-    private JSONException err;
+
     //////////\\\\\\\\\\\
-
-    //Getter i Setter\\
-    public Date getDisposalDate() {
-        return disposalDate;
-    }
-
-    //Metoda poprawiona analogicznie jak w klasie Flower\\
-    //*TODO*Dodać assert, nie można ustawić daty utylizacji w przeszłości\\
-    public void setDisposalDate(String disposalDateRRRRMMDD) {
-        String date;
-        String[] parts = disposalDateRRRRMMDD.split("");
-        date = parts[0] + parts[1] + parts[2] + parts[3] + "-" + parts[4] + parts[5] + "-" + parts[6] + parts[7];
-        String today = String.valueOf(LocalDateTime.now()).split("T")[0];
-        if(!Objects.equals(today, date)){
-            disposalDate = Date.valueOf(date);
-        }
-        else{
-            System.out.println(today);
-        }
-    }
-    //////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-
     //Metoda utilize ustawia ilość kwiatów na 0, przy założeniu że data utylizacji była conajmniej dzisiaj.\\
     //*TODO* dodać funkcję do bazy danych która będzie usuwać pozycje z @param quantity = 0 (Czy napewno???)\\
     public void utilize(){

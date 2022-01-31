@@ -4,6 +4,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.sql.Date;
+import java.time.LocalDateTime;
+import java.util.Objects;
 
 //*TODO*Dodać metodę potrafiącą podzielić obiekt na dwa obiekty. np. Mamy dwie róże => jedna róża + jedna róża
 class Flower {
@@ -16,6 +18,7 @@ class Flower {
     public float price;
     public Date deliveryDate;
     public String id; //*TODO*Czy nie powinna być "final"?
+    public Date disposalDate;
 
     /////////////\\\\\\\\\\\\\
 
@@ -69,6 +72,25 @@ class Flower {
 
     }
 
+    public Date getDisposalDate() {
+        return disposalDate;
+    }
+
+    //Metoda poprawiona analogicznie jak w klasie Flower\\
+    //*TODO*Dodać assert, nie można ustawić daty utylizacji w przeszłości\\
+    public void setDisposalDate(String disposalDateRRRRMMDD) {
+        String date;
+        String[] parts = disposalDateRRRRMMDD.split("");
+        date = parts[0] + parts[1] + parts[2] + parts[3] + "-" + parts[4] + parts[5] + "-" + parts[6] + parts[7];
+        String today = String.valueOf(LocalDateTime.now()).split("T")[0];
+        if(!Objects.equals(today, date)){
+            disposalDate = Date.valueOf(date);
+        }
+        else{
+            System.out.println(today);
+        }
+    }
+
     public String getId() {
         return id;
     }
@@ -102,6 +124,7 @@ class Flower {
             iD = "1997" + "01" + "01" + ((int)Math.floor(Math.random()*10)) + ((int)Math.floor(Math.random()*10)) + ((int)Math.floor(Math.random()*10));
         }
         this.setId(iD);
+        this.setDisposalDate("19970101");
         ///////////////\\\\\\\\\\\\\\\\\
     }
 

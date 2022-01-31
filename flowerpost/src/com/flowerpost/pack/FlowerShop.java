@@ -91,9 +91,9 @@ public class FlowerShop {
     public String utilize(){
         Date today = new Date();
         NaturalFlower[] utilizedFlowers = new NaturalFlower[0];
-        try{
-            for (Flowers flowers : stock) {
-//                System.out.println(((NaturalFlower) flower).getDisposalDate() + " ||| " + today);
+        Flower dateFlower = new Flower("date", "date", 0,"00000000");
+        for (Flowers flowers : stock) {
+            if (flowers.disposalDate != dateFlower.disposalDate) {
                 if (((NaturalFlower) flowers).getDisposalDate().before(today)) {
                     int newArraySize = utilizedFlowers.length + 1;
                     NaturalFlower[] biggerUtylizedFlowers = new NaturalFlower[newArraySize];
@@ -104,7 +104,7 @@ public class FlowerShop {
                     flowers.setAvailability(false);
                 }
             }
-        } catch (Exception ignore) { } //Funkcja zwraca wyjątki ponieważ możemy starać sie wywołać getUtilizeDate dla SynthethicFlower
+        }
         return (Arrays.toString(utilizedFlowers));
     }
 
