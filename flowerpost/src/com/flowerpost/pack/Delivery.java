@@ -9,7 +9,7 @@ public class Delivery {
     Flowers[] deliveryItems = new Flowers[0];
     //*TODO* [x] Zmienić typ deliveryDestination z String na Objekt nowej klasy\\
     public Address deliveryDestination = new Address("", "", "", "");
-    public String id;
+    public final String id;
 
     //Gettery i Settery\\
     public Date getDeliveryDate() {
@@ -31,15 +31,11 @@ public class Delivery {
 
     //Poprawiano setter dla obiektu klasy address\\
     public void setDeliveryDestination(String postalCode, String townName, String streetName, String buildingNumber) {
-        this.deliveryDestination.setAddress(postalCode,townName,streetName,buildingNumber);
+        this.deliveryDestination = new Address(postalCode,townName,streetName,buildingNumber);
     }
 
     public String getId() {
         return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     //Metoda analogiczna do metody z FlowerBouquet\\
@@ -69,7 +65,7 @@ public class Delivery {
         String[] parts = deliveryDateRRRRMMDD.split("");
         iD = parts[0] + parts[1] + parts[2] + parts[3] + parts[4] + parts[5] + parts[6] + parts[7]
                 + ((int)Math.floor(Math.random()*10)) + ((int)Math.floor(Math.random()*10)) + ((int)Math.floor(Math.random()*10));
-        this.setId(iD);
+        this.id = iD;
     }
 }
 //*TODO* [ ] Dodać cechę cykliczne i związane z nią funkcjonalności

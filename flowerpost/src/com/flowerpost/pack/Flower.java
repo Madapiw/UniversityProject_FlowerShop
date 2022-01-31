@@ -12,12 +12,12 @@ class Flower {
 
     //Atrybuty klasy\\
 
-    public String name;
-    public String colour;
+    public final String name;
+    public final String colour;
     public boolean availability = false;
     public float price;
     public Date deliveryDate;
-    public String id; //*TODO*Czy nie powinna być "final"?
+    public final String id; //*TODO*Czy nie powinna być "final"?
     public Date disposalDate;
 
     /////////////\\\\\\\\\\\\\
@@ -27,16 +27,8 @@ class Flower {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getColour() {
         return colour;
-    }
-
-    public void setColour(String colour) {
-        this.colour = colour;
     }
 
     public boolean isAvailability() {
@@ -94,11 +86,7 @@ class Flower {
     public String getId() {
         return id;
     }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
+    
     ///////////////////////\\\\\\\\\\\\\\\\\\\\
     //Konstruktor\\
     public Flower(String name,
@@ -108,8 +96,8 @@ class Flower {
         //Domyślne ustawienie dostępności na "false". *TODO*Czy da się w parametrach?\\
         //this.availability = false;
         //////////////\\\\\\\\\\\\\\\\\
-        this.setName(name);
-        this.setColour(colour);
+        this.name = name;
+        this.colour = colour;
         ////////\\\\\\\\
         this.setPrice(price);
         this.setDeliveryDate(deliveryDateRRRRMMDD);
@@ -123,7 +111,7 @@ class Flower {
         }else {
             iD = "1997" + "01" + "01" + ((int)Math.floor(Math.random()*10)) + ((int)Math.floor(Math.random()*10)) + ((int)Math.floor(Math.random()*10));
         }
-        this.setId(iD);
+        this.id = iD;
         this.setDisposalDate("19970101");
         ///////////////\\\\\\\\\\\\\\\\\
     }

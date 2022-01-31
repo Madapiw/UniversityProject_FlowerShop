@@ -8,14 +8,13 @@ public class Order {
     public Date orderExecutionDate;
     Flowers[] orderedFlowers = new Flowers[0];
     FlowersBouquet[] orderedBouquets = new FlowersBouquet[0];
-    public String id;
+    public final String id;
     public Address orderExecutionAddress = new Address("", "", "", "");
     public String noteToOrder;
     public String noteToReceiver;
     public float price;
 
     //Gettery i Settery\\
-
 
     public float getPrice() {
         return price;
@@ -69,17 +68,14 @@ public class Order {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
     public Address getOrderExecutionAddress() {
         return orderExecutionAddress;
     }
 
     //Poprawiona metoda, żeby przyjmowała String\\
     public void setOrderExecutionAddress(String postalCode, String townName, String streetName, String buildingNumber) {
-        this.orderExecutionAddress.setAddress(postalCode, townName, streetName, buildingNumber);
+        Address tempAddress = new Address(postalCode, townName, streetName, buildingNumber);
+        this.orderExecutionAddress = tempAddress;
     }
 
     public String getNoteToOrder() {
@@ -125,7 +121,7 @@ public class Order {
         String[] parts = orderSubmitDateRRRRMMDD.split("");
         iD = parts[0] + parts[1] + parts[2] + parts[3] + parts[4] + parts[5] + parts[6] + parts[7]
                 + ((int)Math.floor(Math.random()*10)) + ((int)Math.floor(Math.random()*10)) + ((int)Math.floor(Math.random()*10));
-        this.setId(iD);
+        this.id = iD;
         this.setOrderExecutionAddress(postalCode,townName,streetName,buildingNumber);
         this.noteToOrder = noteToOrder;
         this.noteToReceiver = noteToReceiver;
@@ -154,11 +150,11 @@ public class Order {
 
     //Metoda czyszcząca całe zamówienie\\
     public void clearOrder(){
-        this.orderExecutionAddress.clearAddress();
+        Address clearAddress = new Address("", "", "", "");
+        this.orderExecutionAddress = clearAddress;
         this.price = 0;
         this.noteToOrder = "";
         this.noteToReceiver = "";
-        this.id = "";
         Date dateZero = Date.valueOf("1970-01-01");
         this.orderExecutionDate = dateZero;
         this.orderSubmitDate = dateZero;

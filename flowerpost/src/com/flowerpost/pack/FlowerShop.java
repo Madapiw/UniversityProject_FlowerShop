@@ -6,8 +6,8 @@ import java.util.Objects;
 
 public class FlowerShop {
     //Atrybuty Klasy\\
-    public Address flowerShopAddress = new Address("", "", "", "");
-    public int phoneNumber;
+    public final Address flowerShopAddress;
+    public final int phoneNumber;
     Flowers[] stock = new Flowers[0];
 
     //Gettery i Settery\\
@@ -15,16 +15,8 @@ public class FlowerShop {
         return flowerShopAddress;
     }
 
-    public void setFlowerShopAddress(Address flowerShopAddress) {
-        this.flowerShopAddress = flowerShopAddress;
-    }
-
     public int getPhoneNumber() {
         return phoneNumber;
-    }
-
-    public void setPhoneNumber(int phoneNumber) {
-        this.phoneNumber = phoneNumber;
     }
 
     public Flowers[] getStock() {
