@@ -20,7 +20,7 @@ public class Delivery {
     }
 
     //Poprawione analogicznie do klasy NaturalFlower\\
-    //*TODO* [ ] Dodać wyjątek, nie można ustawić daty w przeszłości, ale może być jeśli była ustawiona w momencie kiedy to była przyszłość\\
+    //*TODO* [X] Dodać wyjątek, nie można ustawić daty w przeszłości, ale może być jeśli była ustawiona w momencie kiedy to była przyszłość\\
     public void setDeliveryDate(String deliveryDateRRRRMMDD) throws ParseException {
         String[] parts = deliveryDateRRRRMMDD.split("");
         String date = parts[0] + parts[1] + parts[2] + parts[3] + "-" + parts[4] + parts[5] + "-" + parts[6] + parts[7];
@@ -33,9 +33,12 @@ public class Delivery {
         if (dateOfNow.compareTo(dateOfDelivery) > 0 ){
             throw new ParseException("Delivery date is in the past",69420);
         }
-        System.out.println(date);
+//        System.out.println(date);
         deliveryDate = Date.valueOf(date);
 
+        for(Flowers item : deliveryItems){
+            item.deliveryDate = deliveryDate;
+        }
     }
 
     public String getDeliveryDestination() {
