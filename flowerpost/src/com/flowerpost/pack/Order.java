@@ -9,7 +9,7 @@ public class Order {
     Flowers[] orderedFlowers = new Flowers[0];
     FlowersBouquet[] orderedBouquets = new FlowersBouquet[0];
     public final String id;
-    public Address orderExecutionAddress = new Address("", "", "", "");
+    public Address orderExecutionAddress;
     public String noteToOrder;
     public String noteToReceiver;
     public float price;

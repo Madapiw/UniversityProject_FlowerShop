@@ -7,7 +7,6 @@ import java.sql.Date;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-//*TODO*Dodać metodę potrafiącą podzielić obiekt na dwa obiekty. np. Mamy dwie róże => jedna róża + jedna róża
 class Flower {
 
     //Atrybuty klasy\\
@@ -17,7 +16,7 @@ class Flower {
     public boolean availability = false;
     public float price;
     public Date deliveryDate;
-    public final String id; //*TODO*Czy nie powinna być "final"?
+    public final String id;
     public Date disposalDate;
 
     /////////////\\\\\\\\\\\\\
@@ -92,15 +91,14 @@ class Flower {
                   String colour,
                   float price,
                   String deliveryDateRRRRMMDD){
-        //Domyślne ustawienie dostępności na "false". *TODO*Czy da się w parametrach?\\
-        //this.availability = false;
+        //Domyślne ustawienie dostępności na "false". *TODO* [X] Czy da się w parametrach?
         //////////////\\\\\\\\\\\\\\\\\
         this.name = name;
         this.colour = colour;
         ////////\\\\\\\\
         this.setPrice(price);
         this.setDeliveryDate(deliveryDateRRRRMMDD);
-        //Automatycznie wygenerowane "unikatowe" ID\\ *TODO*zrobić bardziej unikatowe, żeby bazowało na każdej cesze
+        //Automatycznie wygenerowane "unikatowe" ID\\ *TODO* [ ]zrobić bardziej unikatowe, żeby bazowało na każdej cesze
         //Bardzo złe ID poniżej !!POPRAWIC!!\\
         String iD;
         String[] parts = deliveryDateRRRRMMDD.split("");
