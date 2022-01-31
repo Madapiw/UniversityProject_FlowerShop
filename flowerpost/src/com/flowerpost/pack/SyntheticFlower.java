@@ -3,7 +3,7 @@ package com.flowerpost.pack;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class SyntheticFlower extends Flower{
+public class SyntheticFlower extends Flowers{
 
     @Override
     public String toString() {

@@ -1,11 +1,13 @@
 package com.flowerpost.pack;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.sql.Date;
 import java.time.LocalDateTime;
 import java.util.Objects;
-import org.json.*;
 
-public class NaturalFlower extends Flower{
+public class NaturalFlower extends Flowers{
 
     //Dodatkowy parametr\\
     public Date disposalDate;

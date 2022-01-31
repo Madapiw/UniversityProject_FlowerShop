@@ -12,7 +12,6 @@ class Flower {
 
     public String name;
     public String colour;
-    public int quantity;
     public boolean availability = false;
     public float price;
     public Date deliveryDate;
@@ -35,15 +34,6 @@ class Flower {
 
     public void setColour(String colour) {
         this.colour = colour;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    //Poprawiona metoda, aby nie dało się ustawić ujemnej liczby kwiatów.\\
-    public void setQuantity(int quantity) {
-        this.quantity = Math.max(quantity, 0);
     }
 
     public boolean isAvailability() {
@@ -88,29 +78,9 @@ class Flower {
     }
 
     ///////////////////////\\\\\\\\\\\\\\\\\\\\
-
-    //Własne metody\\
-
-    //Metoda "addQuantity" dodaje określoną ilość @param quantity do atrybutu quantitu obiektu.\\
-    public void  addQuantity(int quantity){
-        int currentQuantity = this.getQuantity();
-        this.setQuantity(currentQuantity + quantity);
-    }
-
-    //Metoda "removeQuantity" usuwa określoną ilość @param quantity z atrybutu obiektu quantity.\\
-    //Wartość quantity nie może być ujemna więc przewidujemy ten przypadek stosując "if"\\
-    public void removeQuantity(int quantity){
-        int currentQuantity = this.getQuantity();
-        this.setQuantity(currentQuantity - quantity);
-        if(this.getQuantity() < 0){
-            setQuantity(0);
-        }
-    }
-
     //Konstruktor\\
     public Flower(String name,
                   String colour,
-                  int quantity,
                   float price,
                   String deliveryDateRRRRMMDD){
         //Domyślne ustawienie dostępności na "false". *TODO*Czy da się w parametrach?\\
@@ -118,8 +88,6 @@ class Flower {
         //////////////\\\\\\\\\\\\\\\\\
         this.setName(name);
         this.setColour(colour);
-        //Ustawienie wartości quantity na nieujemną.\\
-        this.setQuantity(Math.max(quantity, 0));
         ////////\\\\\\\\
         this.setPrice(price);
         this.setDeliveryDate(deliveryDateRRRRMMDD);
@@ -143,7 +111,6 @@ class Flower {
             FlowersJsonObj.put("id", this.id);
             FlowersJsonObj.put("name", this.name);
             FlowersJsonObj.put("colour", this.colour);
-            FlowersJsonObj.put("quantity", this.quantity);
             FlowersJsonObj.put("availability", this.availability);
             FlowersJsonObj.put("price", this.price);
             FlowersJsonObj.put("deliveryDate", this.deliveryDate);
@@ -159,7 +126,6 @@ class Flower {
         return "Flower{" +
                 "name='" + name + '\'' +
                 ", colour='" + colour + '\'' +
-                ", quantity=" + quantity +
                 ", availability=" + availability +
                 ", price=" + price +
                 ", deliveryDate=" + deliveryDate +
