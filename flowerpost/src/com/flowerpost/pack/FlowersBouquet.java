@@ -33,6 +33,25 @@ public class FlowersBouquet {
     //////////////////\\\\\\\\\\\
 
     //*TODO* Dodać metodę deleteFlower usuwającą określoną pozycję w bouquet.\\
+    public void deleteFlowers(String id, int quantity){
+        Flowers[] bouquet1 = this.bouquet;
+        for (int i = 0, bouquet1Length = bouquet1.length; i < bouquet1Length; i++) {
+            Flowers flowers = bouquet1[i];
+            if (flowers.id == id) {
+                System.out.println("Deleted flowers: " + flowers.name + " ID: " + flowers.id + " Quantity: " + quantity);
+                if (flowers.quantity > quantity) flowers.quantity -= quantity;
+                else if (flowers.quantity <= quantity) {
+                    Flowers[] bouquetWithoutDeleted = new Flowers[bouquet1Length -1];
+                    for(int j = i; j < bouquet1Length -1;j++){
+                        bouquet1[j] = bouquet1[j+1];
+                    }
+                    System.arraycopy(bouquet1,0,bouquetWithoutDeleted,0, bouquet1Length-1);
+                    this.bouquet = bouquetWithoutDeleted;
+                }
+            }
+        }
+    }
+
 
     //Automatycznie wygenerowany toString\\\\\\\
     @Override
@@ -51,6 +70,8 @@ public class FlowersBouquet {
 //        RoseBouquet.addFlower(Rose19122021);
 //        SyntheticFlower DragonPlant = new SyntheticFlower("Dragon Plant", "Blue", "Plastik", 4, 3.50F, "20211220");
 //        RoseBouquet.addFlower(DragonPlant);
+//        System.out.println(RoseBouquet);
+//        RoseBouquet.deleteFlowers("20211219875",31);
 //        System.out.println(RoseBouquet);
 //    }
 }

@@ -53,10 +53,9 @@ class Flower {
 
     //Poprawiona metoda setDeliveryDate, żeby parametrem był String, a nie Date Object\\
     public void setDeliveryDate(String deliveryDateRRRRMMDD) {
-        String date;
         String[] parts = deliveryDateRRRRMMDD.split("");
         if(parts.length == 8){
-            date = parts[0] + parts[1] + parts[2] + parts[3] + "-" + parts[4] + parts[5] + "-" + parts[6] + parts[7];
+            String date = parts[0] + parts[1] + parts[2] + parts[3] + "-" + parts[4] + parts[5] + "-" + parts[6] + parts[7];
             deliveryDate = Date.valueOf(date);
         }else {
             deliveryDate = Date.valueOf("1970-01-01");
