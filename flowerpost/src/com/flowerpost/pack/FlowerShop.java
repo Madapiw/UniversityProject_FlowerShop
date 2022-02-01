@@ -307,8 +307,8 @@ public class FlowerShop {
             System.out.println("2. Zatwierdź dostawę i zakończ.");
             System.out.println("3. Usuń dostawę i zakończ.");
             option = Integer.parseInt(scanner.nextLine());
-            switch (option){
-                case 1:
+            switch (option) {
+                case 1 -> {
                     System.out.println("\nWybierz rodzaj kwiatów:\t");
                     System.out.println("1. Kwiat sztuczny\t\t2. Kwiat naturalny");
                     option2 = Integer.parseInt(scanner.nextLine());
@@ -320,28 +320,30 @@ public class FlowerShop {
                     int flowersQuantity = Integer.parseInt(scanner.nextLine());
                     System.out.println("\nDodaj cene jednego kwiatu:\t");
                     float flowersPriceOfOne = Float.parseFloat(scanner.nextLine());
-                    if(option2 == 1) {
+                    if (option2 == 1) {
                         System.out.println("\nPodaj materiał z którego są sztuczne kwiaty:\t");
                         String flowersMaterial = scanner.nextLine();
                         SyntheticFlower tempSyntheticFlower = new SyntheticFlower(flowersName, flowersColor, flowersMaterial, flowersQuantity, flowersPriceOfOne, "19970101");
                         delivery.addFlower(tempSyntheticFlower);
-                    } else{
+                    } else {
                         System.out.println("\nPodaj datę urzyteczności kwiatów RRRRMMDD:\t");
                         String flowerUtilizeDate = scanner.nextLine();
-                        NaturalFlower tempNaturalFlower = new NaturalFlower(flowersName,flowersColor,flowersQuantity,flowersPriceOfOne,"19970101",flowerUtilizeDate);
+                        NaturalFlower tempNaturalFlower = new NaturalFlower(flowersName, flowersColor, flowersQuantity, flowersPriceOfOne, "19970101", flowerUtilizeDate);
                         delivery.addFlower(tempNaturalFlower);
-                        }
-                    break;
-                case 2:
+                    }
+                }
+                case 2 -> {
                     delivery.setDeliveryDateForAllItems();
                     this.addDelivery(delivery);
                     running = false;
                     System.out.println("Dodano dostawę.");
-                    break;
-                case 3:
-                    delivery = new Delivery("19970101", "", "", "", "", "");
-                    break;
                 }
+                case 3 -> {
+                    delivery = new Delivery("19970101", "", "", "", "", "");
+                    running = false;
+                    System.out.println("Usunięto dostawę.");
+                }
+            }
 
             }
     }
@@ -363,8 +365,9 @@ public class FlowerShop {
         System.out.println(GunNRoses.utilize());
         System.out.println(Arrays.toString(GunNRoses.stock));
 
-//        GunNRoses.createDelivery();
-        GunNRoses.createOrder();
+        GunNRoses.createDelivery();
+        System.out.println(Arrays.toString(GunNRoses.stock));
+//        GunNRoses.createOrder();
 
 //        System.out.println("=======================================================================");
 //
