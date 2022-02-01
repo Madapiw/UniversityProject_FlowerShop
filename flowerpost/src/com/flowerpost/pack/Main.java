@@ -1,7 +1,6 @@
 package com.flowerpost.pack;
 
 import java.io.File;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Date;
 import java.util.Objects;
@@ -15,7 +14,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         Flower dateFlower = new Flower("", "", 0, "19970101");
         FlowerShop runningFlowerShop = null;
-        System.out.println("Witaj! Dzisiejszy dzień: " + today);
+        System.out.println("Witaj! Dzisiejszy dzień: " + new java.sql.Date(today.getTime()));
         int option = 0;
         while(running){
             switch (option + 1){
@@ -68,6 +67,8 @@ public class Main {
                         for(FlowersBouquet bouquet : order.orderedBouquets){
                             System.out.println(bouquet.toString());
                         }
+                        System.out.println("CZy zrealizowany: " + order.completed);
+                        System.out.println("||=======================================================================||");
                     }
                     break;
                 case 4:
