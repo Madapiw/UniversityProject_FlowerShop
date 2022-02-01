@@ -7,16 +7,8 @@ public class SyntheticFlower extends Flowers implements Cloneable{
 
     @Override
     public String toString() {
-        return "SyntheticFlower{" +
-                "name='" + name + '\'' +
-                ", colour='" + colour + '\'' +
-                ", quantity=" + quantity +
-                ", availability=" + availability +
-                ", price=" + price +
-                ", deliveryDate=" + deliveryDate +
-                ", id='" + id + '\'' +
-                ", materialType='" + materialType + '\'' +
-                '}';
+        return ("Typ: Sztuczny       Nazwa: " + this.name + "\t" + "Kolor: " + this.colour + "\t" + "Cena: " + this.price + "\t" +"Typ materiału: " + (this.materialType) + "\t" + "Identyfikator: " + this.id + "\n" +
+                "Dostępnośc: " + this.availability + "\t" + "Data dostawy: " + this.deliveryDate + "\t" + "Ilość: " + this.quantity);
     }
 
     public String getMaterialType() {

@@ -1,6 +1,7 @@
 package com.flowerpost.pack;
 
 import java.util.Date;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Main {
@@ -8,6 +9,7 @@ public class Main {
         boolean running = true;
         Date today = new Date();
         Scanner scanner = new Scanner(System.in);
+        Flower dateFlower = new Flower("", "", "", "19970101");
 
         System.out.println("Witaj! Dzisiejszy dzień: " + today);
         int option = 1;
@@ -26,9 +28,48 @@ public class Main {
                     break;
                 case 3:
                     System.out.println("Magazyn kwiatów:");
-                    for()
-
-
+                    System.out.println("||=======================================================================||");
+                    for(Flowers item : runningFlowerShop.stock){
+                        if(Objects.equals(item.disposalDate.toString(), dateFlower.disposalDate.toString())){
+                            SyntheticFlower tempSyntheticFlower = ((SyntheticFlower) item);
+                            System.out.println(tempSyntheticFlower.toString());
+                            System.out.println("||=======================================================================||");
+                        } else{
+                            NaturalFlower tempNaturalFlower = ((NaturalFlower) item);
+                            System.out.println(tempNaturalFlower.toString());
+                            System.out.println("||=======================================================================||");
+                        }
+                    }
+                    System.out.println("\n\n||=======================================================================||");
+                    System.out.println("Magazyn zamówień: ");
+                    System.out.println("||=======================================================================||");
+                    for(Order order : runningFlowerShop.stockOrders){
+                        System.out.println("Data złożenia zamówienia: " + order.orderSubmitDate + "\t" + "Data wykonania zamówienia: " + "\t" + "Identyfikaor zamówienia: " + order.id);
+                        System.out.println(order.orderExecutionAddress.toString() + "\tCena: " + order.price);
+                        System.out.println("Nota dla dostawcy: " + order.noteToOrder);
+                        System.out.println("Nota dla odbiorcy: " + order.noteToReceiver);
+                        System.out.println("Zawartość zamówienia: ");
+                        for(Flowers flowers : order.orderedFlowers){
+                            System.out.println(flowers.toString());
+                        }
+                        for(FlowersBouquet bouquet : order.orderedBouquets){
+                            System.out.println(bouquet.toString());
+                        }
+                    }
+                    break;
+                case 4:
+                    System.out.println("Kreator dostaw: ");
+                    runningFlowerShop.createDelivery();
+                    break;
+                case 5:
+                    System.out.println("Kreator zamówień: ");
+                    runningFlowerShop.createOrder();
+                    break;
+                case 6:
+                    running = false;
+                    //ZAPISANIE DO PLIKU//
+                    System.out.println("Koniec działania programu. Zapisano stan do plików.");
+                    break;
             }
             System.out.println("Wybierz opcję:");
             System.out.println("1. Wybierz inną kwiaciarnię.");

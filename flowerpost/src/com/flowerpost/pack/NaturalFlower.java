@@ -46,16 +46,8 @@ public class NaturalFlower extends Flowers implements Cloneable{
 
     @Override
     public String toString() {
-        return "NaturalFlower{" +
-                "name='" + name + '\'' +
-                ", colour='" + colour + '\'' +
-                ", quantity=" + quantity +
-                ", availability=" + availability +
-                ", price=" + price +
-                ", deliveryDate=" + deliveryDate +
-                ", id='" + id + '\'' +
-                ", disposalDate=" + disposalDate +
-                '}';
+        return ("Typ: naturalny      Nazwa: " + this.name + "\t" + "Kolor: " + this.colour + "\t" + "Cena: " + this.price + "\t" + "Identyfikator: " + this.id + "\n" +
+                "Dostępnośc: " + this.availability + "\t" + "Data dostawy: " + this.deliveryDate + "\t" + "Termin ważności: " + this.disposalDate + "\t" + "Ilość: " + this.quantity);
     }
 
     ////TEST\\\\

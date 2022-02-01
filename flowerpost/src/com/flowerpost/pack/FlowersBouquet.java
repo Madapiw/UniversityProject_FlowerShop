@@ -1,7 +1,5 @@
 package com.flowerpost.pack;
 
-import java.util.Arrays;
-
 //*TODO* dodać wyjątek jeśli dodawany kwiat ma dostępność false\\
 public class FlowersBouquet {
 
@@ -55,10 +53,12 @@ public class FlowersBouquet {
     //Automatycznie wygenerowany toString\\\\\\\
     @Override
     public String toString() {
-        return "FlowersBouquet{" +
-                "bouquet=" + Arrays.toString(bouquet) +
-                ", cena=" + cena +
-                '}';
+        StringBuilder out;
+        out = new StringBuilder("Kwiaty w bukiecie: ");
+        for(Flowers flowers : this.bouquet){
+            out.append("\n").append(flowers.toString());
+        }
+        return out.toString();
     }
     ////////////\\\\\\\\\\\\\\\\
 
