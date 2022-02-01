@@ -5,7 +5,7 @@ import java.util.*;
 public class FlowerShop {
     //Atrybuty Klasy\\
     public final Address flowerShopAddress;
-    public final int phoneNumber;
+    public final String phoneNumber;
     Flowers[] stock = new Flowers[0];
     Order[] stockOrders = new Order[0];
 
@@ -14,7 +14,7 @@ public class FlowerShop {
         return flowerShopAddress;
     }
 
-    public int getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
@@ -23,7 +23,7 @@ public class FlowerShop {
     }
 
     //Konstruktor\\\
-    public FlowerShop(Address flowerShopAddress, int phoneNumber) {
+    public FlowerShop(Address flowerShopAddress, String phoneNumber) {
         this.flowerShopAddress = flowerShopAddress;
         this.phoneNumber = phoneNumber;
     }
@@ -133,8 +133,8 @@ public class FlowerShop {
         return (Arrays.toString(deliveredFlowers));
     }
 
-    //*TODO* [ ] Metoda "realizująca zamówienie\\ czyli na podstawie parametrów tworząca obiekt zamówienia i usuwająca kwiaty z magazynu.\\
-    //*TODO* [ ] Jeśli nie ma wystarczającej ilości, zwracany jest błąd.\\
+    //*TODO* [X] Metoda "realizująca zamówienie\\ czyli na podstawie parametrów tworząca obiekt zamówienia i usuwająca kwiaty z magazynu.\\
+    //*TODO* [~] Jeśli nie ma wystarczającej ilości, zwracany jest błąd.\\
 
     public void createOrder(){
         Date orderSubmitDateUtil = new Date();
@@ -285,7 +285,7 @@ public class FlowerShop {
 
     public void createDelivery(){
         Scanner scanner = new Scanner(System.in);
-        System.out.println("\nPodaj date otrzymania dostawy w formacie RRRRMMDD:\t");
+        System.out.println("\nPodaj zaplanowaną date otrzymania dostawy w formacie RRRRMMDD:\t");
         String deliveryDate = scanner.nextLine();
         System.out.println("\nPodaj kod pocztowy do zamówienia:\t");
         String postalCode = scanner.nextLine();
@@ -295,31 +295,61 @@ public class FlowerShop {
         String streetName = scanner.nextLine();
         System.out.println("\nPodaj numer budynku do zamówienia:\t");
         String buildingNumber = scanner.nextLine();
-        Delivery createDelivery = new Delivery(deliveryDate,postalCode,townName,streetName,buildingNumber);
-        while (true){
-            System.out.println("\n Zakończ? [y/n]:\t");
-            String end = scanner.nextLine();
-            if(end == "Y" ||  end == "y" || end == "yes" || end == "YES") {
-                break;
+        System.out.println("\nPodaj numer telefonu kwiaciatni do której jest dostawa:\t");
+        String phoneNumberFlowerShop = scanner.nextLine();
+        Delivery delivery = new Delivery(deliveryDate,postalCode,townName,streetName,buildingNumber,phoneNumberFlowerShop);
+        boolean running = true;
+        int option;
+        int option2;
+        while (running){
+            System.out.println("Wybierz opcję:");
+            System.out.println("1. Dodaj pozycję do dostawy.");
+            System.out.println("2. Zatwierdź dostawę i zakończ.");
+            System.out.println("3. Usuń dostawę i zakończ.");
+            option = Integer.parseInt(scanner.nextLine());
+            switch (option){
+                case 1:
+                    System.out.println("\nWybierz rodzaj kwiatów:\t");
+                    System.out.println("1. Kwiat sztuczny\t\t2. Kwiat naturalny");
+                    option2 = Integer.parseInt(scanner.nextLine());
+                    System.out.println("\nDodaj nazwe kwiatów:\t");
+                    String flowersName = scanner.nextLine();
+                    System.out.println("\nDodaj kolor kwiatów:\t");
+                    String flowersColor = scanner.nextLine();
+                    System.out.println("\nDodaj ilość kwiatów:\t");
+                    int flowersQuantity = Integer.parseInt(scanner.nextLine());
+                    System.out.println("\nDodaj cene jednego kwiatu:\t");
+                    float flowersPriceOfOne = Float.parseFloat(scanner.nextLine());
+                    if(option2 == 1) {
+                        System.out.println("\nPodaj materiał z którego są sztuczne kwiaty:\t");
+                        String flowersMaterial = scanner.nextLine();
+                        SyntheticFlower tempSyntheticFlower = new SyntheticFlower(flowersName, flowersColor, flowersMaterial, flowersQuantity, flowersPriceOfOne, "19970101");
+                        delivery.addFlower(tempSyntheticFlower);
+                    } else{
+                        System.out.println("\nPodaj datę urzyteczności kwiatów RRRRMMDD:\t");
+                        String flowerUtilizeDate = scanner.nextLine();
+                        NaturalFlower tempNaturalFlower = new NaturalFlower(flowersName,flowersColor,flowersQuantity,flowersPriceOfOne,"19970101",flowerUtilizeDate);
+                        delivery.addFlower(tempNaturalFlower);
+                        }
+                    break;
+                case 2:
+                    delivery.setDeliveryDateForAllItems();
+                    this.addDelivery(delivery);
+                    running = false;
+                    System.out.println("Dodano dostawę.");
+                    break;
+                case 3:
+                    delivery = new Delivery("19970101", "", "", "", "", "");
+                    break;
+                }
+
             }
-            System.out.println("\nDodaj nazwe kwiatów:\t");
-            String flowersName = scanner.nextLine();
-            System.out.println("\nDodaj kolor kwiatów:\t");
-            String flowersColor = scanner.nextLine();
-            System.out.println("\nDodaj ilość kwiatów:\t");
-            String flowersQuantity = scanner.nextLine();
-            System.out.println("\nDodaj cene jednego kwiatu:\t");
-            String flowersPriceOfOne = scanner.nextLine();
-            Date dateNow = new Date(Calendar.getInstance().getTime().getTime());
-            createDelivery.addFlower(new Flowers(flowersName,flowersColor,Integer.parseInt(flowersQuantity),Float.valueOf(flowersPriceOfOne).floatValue(),deliveryDate));
-        }
-        this.addDelivery(createDelivery);
     }
 
     //TEST
     public  static void main(String[] args){
         Address GunNRosesAddress = new Address("98101", "Seattle", "Cobain", "27");
-        FlowerShop GunNRoses = new FlowerShop(GunNRosesAddress, 222123456);
+        FlowerShop GunNRoses = new FlowerShop(GunNRosesAddress, "222123456");
         NaturalFlower Rose19122021 = new NaturalFlower("rose", "red", 30, 12.50F, "20211219", "20220119");
         SyntheticFlower PlasticRose = new SyntheticFlower("rose", "white", "plastic", 15, 7.50F,"20211219");
         NaturalFlower Rose12122021 = new NaturalFlower("rose", "red", 13, 12.50F, "20211212", "20211220");

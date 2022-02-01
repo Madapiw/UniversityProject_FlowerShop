@@ -66,7 +66,7 @@ public class File {
     ////TEST\\\\
     public static void main(String[] args) throws JSONException {
         Address GunNRosesAddress = new Address("98101", "Seattle", "Cobain", "27");
-        FlowerShop GunNRoses = new FlowerShop(GunNRosesAddress, 222123456);
+        FlowerShop GunNRoses = new FlowerShop(GunNRosesAddress, "222123456");
         NaturalFlower Rose19122021 = new NaturalFlower("rose", "red", 30, 12.50F, "20211219", "20220119");
         SyntheticFlower PlasticRose = new SyntheticFlower("rose", "white", "plastic", 15, 7.50F,"20211219");
         NaturalFlower Rose12122021 = new NaturalFlower("rose", "red", 13, 12.50F, "20211212", "20211220");

@@ -13,9 +13,17 @@ public class Delivery {
     public Address deliveryDestination = new Address("", "", "", "");
     public final String id;
 
+
+
+    public final String phoneNumberFlowerShop;
+
     //Gettery i Settery\\
     public Date getDeliveryDate() {
         return deliveryDate;
+    }
+
+    public String getPhoneNumberFlowerShop() {
+        return phoneNumberFlowerShop;
     }
 
     //Poprawione analogicznie do klasy NaturalFlower\\
@@ -74,7 +82,7 @@ public class Delivery {
 
     //*TODO* [ ] Dodać metodę usuwającą pozycję z zamówienia*\\
 
-    public Delivery(String deliveryDateRRRRMMDD, String postalCodeDestination, String townNameDestination, String streetNameDestination, String buildingNumberDestination) {
+    public Delivery(String deliveryDateRRRRMMDD, String postalCodeDestination, String townNameDestination, String streetNameDestination, String buildingNumberDestination, String phoneNumberFlowerShop) {
         try {
             this.setDeliveryDate(deliveryDateRRRRMMDD);
         } catch (ParseException err) {
@@ -87,10 +95,11 @@ public class Delivery {
         iD = parts[0] + parts[1] + parts[2] + parts[3] + parts[4] + parts[5] + parts[6] + parts[7]
                 + ((int)Math.floor(Math.random()*10)) + ((int)Math.floor(Math.random()*10)) + ((int)Math.floor(Math.random()*10));
         this.id = iD;
+        this.phoneNumberFlowerShop = phoneNumberFlowerShop;
     }
 
     public static void main(String[] args) {
-        Delivery delivery = new Delivery("20220101","34543","wwa","grzybowa","5e");
+        Delivery delivery = new Delivery("20220101","34543","wwa","grzybowa","5e", "222123456");
     }
 }
 //*TODO* [ ] Dodać cechę cykliczne i związane z nią funkcjonalności
