@@ -96,7 +96,7 @@ public class Delivery {
     }
 
     public static void main(String[] args) {
-        Delivery delivery = new Delivery("20220101","34543","wwa","grzybowa","5e", "222123456");
+        //Delivery delivery = new Delivery("20220101","34543","wwa","grzybowa","5e", "222123456");
     }
 }
 //*TODO* [ ] Dodać cechę cykliczne i związane z nią funkcjonalności

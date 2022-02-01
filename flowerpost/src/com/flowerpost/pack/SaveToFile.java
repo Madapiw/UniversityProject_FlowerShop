@@ -11,8 +11,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class SaveToFile {
-    //*TODO* [] Zapis wszystkiego do jednego pliku json.
-    //*TODO* [] Dopisanie do klas metod toJson().
+    //*TODO* [*] Zapis wszystkiego do jednego pliku json.
     public void saveToFile(FlowerShop flowerShop, String fileName){
         Gson gson = new GsonBuilder().setDateFormat("yyyyMMdd").setPrettyPrinting().create();
         try {
@@ -40,7 +39,6 @@ public class SaveToFile {
 
     ////TEST\\\\
     public static void main(String[] args){
-        FlowerShop[] flowershops;
         Address GunNRosesAddress = new Address("98101", "Seattle", "Cobain", "27");
         FlowerShop GunNRoses = new FlowerShop(GunNRosesAddress, "222123456");
 

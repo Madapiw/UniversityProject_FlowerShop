@@ -18,6 +18,7 @@ class Flower {
     public Date deliveryDate;
     public final String id;
     public Date disposalDate;
+    public String materialType = null;
 
     /////////////\\\\\\\\\\\\\
 
@@ -111,21 +112,6 @@ class Flower {
         this.id = iD;
         this.setDisposalDate("19970101");
         ///////////////\\\\\\\\\\\\\\\\\
-    }
-
-    public JSONObject toJson(){
-        JSONObject FlowersJsonObj = new JSONObject();
-        try {
-            FlowersJsonObj.put("id", this.id);
-            FlowersJsonObj.put("name", this.name);
-            FlowersJsonObj.put("colour", this.colour);
-            FlowersJsonObj.put("availability", this.availability);
-            FlowersJsonObj.put("price", this.price);
-            FlowersJsonObj.put("deliveryDate", this.deliveryDate);
-        }catch( JSONException exception){
-            exception.printStackTrace();
-        }
-        return  FlowersJsonObj;
     }
 
     //Automatycznie wygenerowane toString()\\

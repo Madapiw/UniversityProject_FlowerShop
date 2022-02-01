@@ -11,9 +11,7 @@ public class SyntheticFlower extends Flowers implements Cloneable{
                 "Dostępnośc: " + this.availability + "\t" + "Data dostawy: " + this.deliveryDate + "\t" + "Ilość: " + this.quantity);
     }
 
-    public String getMaterialType() {
-        return materialType;
-    }
+
 
     public final String materialType;
 
@@ -22,23 +20,6 @@ public class SyntheticFlower extends Flowers implements Cloneable{
 
         this.materialType = materialType;
 
-    }
-
-    public JSONObject toJson(){
-        JSONObject SyntheticFlowersJsonObj = new JSONObject();
-        try {
-            SyntheticFlowersJsonObj.put("id", this.id);
-            SyntheticFlowersJsonObj.put("name", this.name);
-            SyntheticFlowersJsonObj.put("colour", this.colour);
-            SyntheticFlowersJsonObj.put("quantity", this.quantity);
-            SyntheticFlowersJsonObj.put("availability", this.availability);
-            SyntheticFlowersJsonObj.put("price", this.price);
-            SyntheticFlowersJsonObj.put("deliveryDate", this.deliveryDate);
-            SyntheticFlowersJsonObj.put("materialType", this.materialType);
-        }catch( JSONException exception){
-            exception.printStackTrace();
-        }
-        return  SyntheticFlowersJsonObj;
     }
 
     @Override

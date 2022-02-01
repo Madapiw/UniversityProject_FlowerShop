@@ -358,28 +358,28 @@ public class FlowerShop {
 
     //TEST
     public  static void main(String[] args){
-        Address GunNRosesAddress = new Address("98101", "Seattle", "Cobain", "27");
-        FlowerShop GunNRoses = new FlowerShop(GunNRosesAddress, "222123456");
-        NaturalFlower Rose19122021 = new NaturalFlower("rose", "red", 30, 12.50F, "20211219", "20220119");
-        SyntheticFlower PlasticRose = new SyntheticFlower("rose", "white", "plastic", 15, 7.50F,"20211219");
-        NaturalFlower Rose12122021 = new NaturalFlower("rose", "red", 13, 12.50F, "20211212", "20211220");
-        Rose19122021.setAvailability(true);
-        Rose12122021.setAvailability(true);
-        PlasticRose.setAvailability(true);
-        GunNRoses.addFlowerToStock(Rose12122021);
-        GunNRoses.addFlowerToStock(Rose19122021);
-        GunNRoses.addFlowerToStock(PlasticRose);
-
-        System.out.println(GunNRoses.utilize());
-        System.out.println(Arrays.toString(GunNRoses.stock));
-
-        GunNRoses.createDelivery();
-        System.out.println(Arrays.toString(GunNRoses.stock));
+//        Address GunNRosesAddress = new Address("98101", "Seattle", "Cobain", "27");
+//        FlowerShop GunNRoses = new FlowerShop(GunNRosesAddress, "222123456");
+//        NaturalFlower Rose19122021 = new NaturalFlower("rose", "red", 30, 12.50F, "20211219", "20220119");
+//        SyntheticFlower PlasticRose = new SyntheticFlower("rose", "white", "plastic", 15, 7.50F,"20211219");
+//        NaturalFlower Rose12122021 = new NaturalFlower("rose", "red", 13, 12.50F, "20211212", "20211220");
+//        Rose19122021.setAvailability(true);
+//        Rose12122021.setAvailability(true);
+//        PlasticRose.setAvailability(true);
+//        GunNRoses.addFlowerToStock(Rose12122021);
+//        GunNRoses.addFlowerToStock(Rose19122021);
+//        GunNRoses.addFlowerToStock(PlasticRose);
+//
+//        System.out.println(GunNRoses.utilize());
+//        System.out.println(Arrays.toString(GunNRoses.stock));
+//
+//        GunNRoses.createDelivery();
+//        System.out.println(Arrays.toString(GunNRoses.stock));
 //        GunNRoses.createOrder();
 
-//        System.out.println("=======================================================================");
+        System.out.println("=======================================================================");
 //
-//        Delivery delivery = new Delivery("20211224","98101", "Seattle", "Cobain", "27");
+//        //Delivery delivery = new Delivery("20220324","98101", "Seattle", "Cobain", "27");
 //        NaturalFlower RosePink = new NaturalFlower("rose", "pink", 30, 12.50F, "", "20220119");
 //        SyntheticFlower PlasticRoseBlue = new SyntheticFlower("rose", "blue", "plastic", 15, 7.50F,"");
 //        delivery.addFlower(RosePink);
@@ -389,6 +389,7 @@ public class FlowerShop {
 //        GunNRoses.addDelivery(delivery);
 //        GunNRoses.checkDelivery();
 //        System.out.println(Arrays.toString(GunNRoses.stock));
+
 
     }
 }
