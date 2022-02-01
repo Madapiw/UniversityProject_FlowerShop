@@ -1,8 +1,5 @@
 package com.flowerpost.pack;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.sql.Date;
 
 public class NaturalFlower extends Flowers implements Cloneable{
@@ -38,12 +35,5 @@ public class NaturalFlower extends Flowers implements Cloneable{
         Rose19122021.setDisposalDate("20220118");
     }
 
-    @Override
-    public NaturalFlower clone() {
-        try {
-            return (NaturalFlower) super.clone();
-        } catch (CloneNotSupportedException e) {
-            throw new AssertionError();
-        }
-    }
+
 }
