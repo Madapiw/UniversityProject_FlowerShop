@@ -1,0 +1,61 @@
+{
+  "flowerShopAddress": {
+    "postalCode": "34521",
+    "townName": "Warszawa",
+    "streetName": "Nowowiejska",
+    "buildingNumber": "56"
+  },
+  "phoneNumber": "823721846",
+  "stock": [
+    {
+      "quantity": 13,
+      "name": "rose",
+      "colour": "red",
+      "availability": true,
+      "price": 12.5,
+      "deliveryDate": "20211212",
+      "id": "1212590",
+      "disposalDate": "20211220"
+    },
+    {
+      "quantity": 15,
+      "name": "rose",
+      "colour": "white",
+      "availability": true,
+      "price": 7.5,
+      "deliveryDate": "20211219",
+      "id": "1219356",
+      "disposalDate": "19970101",
+      "materialType": "plastic"
+    }
+  ],
+  "stockOrders": [{
+    "orderSubmitDate": "20220201",
+    "orderExecutionDate": "20220214",
+    "orderedFlowers": [
+      {
+        "quantity": 1,
+        "name": "rose",
+        "colour": "white",
+        "availability": true,
+        "price": 7.5,
+        "deliveryDate": "20211219",
+        "id": "1219862",
+        "disposalDate": "19970101",
+        "materialType": "plastic"
+      }
+    ],
+    "orderedBouquets": [],
+    "id": "1212880",
+    "orderExecutionAddress": {
+      "postalCode": "1234112",
+      "townName": "Warszawa",
+      "streetName": "nowowiejska",
+      "buildingNumber": "56"
+    },
+    "noteToOrder": "Magazyn po lewej",
+    "noteToReceiver": "",
+    "price": 10.5,
+    "completed": false
+  }]
+}
