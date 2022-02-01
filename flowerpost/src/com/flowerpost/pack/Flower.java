@@ -18,7 +18,7 @@ class Flower {
     public Date deliveryDate;
     public final String id;
     public Date disposalDate;
-    public String materialType = null;
+    public String materialType;
 
     /////////////\\\\\\\\\\\\\
 
@@ -60,7 +60,6 @@ class Flower {
         }else {
             deliveryDate = Date.valueOf("1970-01-01");
         }
-
     }
 
     public Date getDisposalDate() {
