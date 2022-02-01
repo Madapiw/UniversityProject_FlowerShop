@@ -58,6 +58,17 @@
       "id": "0101058",
       "disposalDate": "19970101",
       "materialType": "plastic"
+    },
+    {
+      "quantity": 234,
+      "name": "Rose",
+      "colour": "red",
+      "availability": false,
+      "price": 12.5,
+      "deliveryDate": "20220220",
+      "id": "0101006",
+      "disposalDate": "19970101",
+      "materialType": "nylon"
     }
   ],
   "stockOrders": [

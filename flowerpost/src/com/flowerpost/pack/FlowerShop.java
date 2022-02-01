@@ -93,7 +93,7 @@ public class FlowerShop {
             if (!Objects.equals(flowers.disposalDate.toString(), dateFlower.disposalDate.toString())) {
                 if ((flowers).getDisposalDate().before(today)) {
                     int newArraySize = utilizedFlowers.length + 1;
-                    Flowers[] biggerUtylizedFlowers = new NaturalFlower[newArraySize];
+                    Flowers[] biggerUtylizedFlowers = new Flowers[newArraySize];
                     System.arraycopy(utilizedFlowers, 0, biggerUtylizedFlowers, 0, utilizedFlowers.length);
                     biggerUtylizedFlowers[newArraySize - 1] = (flowers);
                     utilizedFlowers = biggerUtylizedFlowers;

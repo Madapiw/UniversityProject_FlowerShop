@@ -36,8 +36,8 @@ public class Main {
                     printFilesInWorkingDir();
                     fileName = scanner.nextLine();
                     runningFlowerShop = saveToFile.readFromFile(fileName);
-//                    runningFlowerShop.utilize();
-//                    runningFlowerShop.checkDelivery();
+                    runningFlowerShop.utilize();
+                    runningFlowerShop.checkDelivery();
                 }
                 case 2 -> {
                     //ZAPISANIE DO PLIKU AKTUALNEGO\\
@@ -47,8 +47,8 @@ public class Main {
                     saveToFile.saveToFile(runningFlowerShop, fileName);
                     runningFlowerShop = saveToFile.readFromFile(fileNameToRead);
                     System.out.println("Wczytano " + fileNameToRead);
-//                    runningFlowerShop.utilize();
-//                    runningFlowerShop.checkDelivery();
+                    runningFlowerShop.utilize();
+                    runningFlowerShop.checkDelivery();
                 }
                 case 3 -> {
                     System.out.println("Magazyn kwiatów:");
@@ -92,7 +92,7 @@ public class Main {
                 }
                 case 6 -> {
                     running = false;
-                    //ZAPISANIE DO PLIKU//
+                    saveToFile.saveToFile(runningFlowerShop, fileName);
                     System.out.println("Koniec działania programu. Zapisano stan do plików.");
                 }
                 default -> throw new IllegalStateException("Unexpected value: " + option + 1);
