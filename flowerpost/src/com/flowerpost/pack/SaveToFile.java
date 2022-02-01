@@ -32,7 +32,6 @@ public class SaveToFile {
             FlowerShop flowerShopFromFile = null;
         try {
             Path inputFilePath = Paths.get(fileName+".json");
-            System.out.println(inputFilePath.toAbsolutePath());
             Reader reader = Files.newBufferedReader(Path.of(String.valueOf(inputFilePath.toAbsolutePath())));
             flowerShopFromFile = gson.fromJson(reader,FlowerShop.class);
             reader.close();

@@ -1,5 +1,8 @@
 package com.flowerpost.pack;
 
+import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Date;
 import java.util.Objects;
 import java.util.Scanner;
@@ -17,8 +20,16 @@ public class Main {
         while(running){
             switch (option + 1){
                 case 1:
-                    System.out.println("Wybierz plik kwiaciarnie: ");
+                    System.out.println("Wybierz plik kwiaciarni ( .json ): ");
                     //*TODO[] wypisać pliki z folderu
+                    String workingPath = Paths.get("").toAbsolutePath().toString();
+                    File dir = new File(workingPath);
+                    File[] listOfFIles = dir.listFiles();
+                    for (File file: listOfFIles) {
+                        if(file.isFile()){
+                            System.out.println(file.getName());
+                        }
+                    }
                     String fileName = scanner.nextLine();
                     runningFlowerShop = saveToFile.ReadFromFile(fileName);
                     break;
