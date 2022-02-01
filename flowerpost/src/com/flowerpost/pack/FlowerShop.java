@@ -195,6 +195,7 @@ public class FlowerShop {
                 }
 
             }
+            System.out.println(Arrays.toString(this.stock));
         }
     }
 
