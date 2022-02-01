@@ -8,6 +8,17 @@ import java.util.Objects;
 import java.util.Scanner;
 
 public class Main {
+    public void printFilesInWorkingDir(){
+        String workingPath = Paths.get("").toAbsolutePath().toString();
+        File dir = new File(workingPath);
+        File[] listOfFIles = dir.listFiles();
+        for (File file: listOfFIles) {
+            if(file.isFile()){
+                System.out.println(file.getName());
+            }
+        }
+    }
+
     public void running(){
         boolean running = true;
         Date today = new Date();
@@ -20,16 +31,9 @@ public class Main {
         while(running){
             switch (option + 1){
                 case 1:
-                    System.out.println("Wybierz plik kwiaciarni ( .json ): ");
-                    //*TODO[] wypisać pliki z folderu
-                    String workingPath = Paths.get("").toAbsolutePath().toString();
-                    File dir = new File(workingPath);
-                    File[] listOfFIles = dir.listFiles();
-                    for (File file: listOfFIles) {
-                        if(file.isFile()){
-                            System.out.println(file.getName());
-                        }
-                    }
+                    System.out.println("Wybierz plik kwiaciarni ( bez .json ): ");
+                    //*TODO[x] wypisać pliki z folderu
+                    printFilesInWorkingDir();
                     String fileName = scanner.nextLine();
                     runningFlowerShop = saveToFile.ReadFromFile(fileName);
                     break;
