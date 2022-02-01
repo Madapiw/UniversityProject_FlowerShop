@@ -21,6 +21,7 @@ public class Main {
     public void running(){
         boolean running = true;
         Date today = new Date();
+        String fileName = "";
         SaveToFile saveToFile = new SaveToFile();
         Scanner scanner = new Scanner(System.in);
         Flower dateFlower = new Flower("", "", 0, "19970101");
@@ -33,14 +34,17 @@ public class Main {
                     System.out.println("Wybierz plik kwiaciarni ( bez .json ): ");
                     //*TODO[x] wypisać pliki z folderu
                     printFilesInWorkingDir();
-                    String fileName = scanner.nextLine();
-                    runningFlowerShop = saveToFile.ReadFromFile(fileName);
+                    fileName = scanner.nextLine();
+                    runningFlowerShop = saveToFile.readFromFile(fileName);
                     break;
                 case 2:
                     //ZAPISANIE DO PLIKU AKTUALNEGO\\
-                    System.out.println("Wybierz kwiaciarnie: ");
-
-                    //FlowerShop runningFlowerShop = (//WCZYTANIE Z PLIKU KWIACIARNI\\);
+                    System.out.println("Wybierz inną kwiaciarnie: ");
+                    printFilesInWorkingDir();
+                    String fileNameToRead = scanner.nextLine();
+                    saveToFile.saveToFile(runningFlowerShop,fileName);
+                    runningFlowerShop = saveToFile.readFromFile(fileNameToRead);
+                    System.out.println("Wczytano "+fileNameToRead);
                     break;
                 case 3:
                     System.out.println("Magazyn kwiatów:");
@@ -88,6 +92,8 @@ public class Main {
                     //ZAPISANIE DO PLIKU//
                     System.out.println("Koniec działania programu. Zapisano stan do plików.");
                     break;
+                default:
+                    throw new IllegalStateException("Unexpected value: " + option + 1);
             }
             System.out.println("Wybierz opcję:");
             System.out.println("1. Wybierz inną kwiaciarnię.");

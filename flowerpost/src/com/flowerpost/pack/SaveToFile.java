@@ -1,22 +1,19 @@
 package com.flowerpost.pack;
 
 import com.google.gson.GsonBuilder;
-import org.json.*;
 import com.google.gson.Gson;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.Reader;
 import java.io.Writer;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Arrays;
 
 public class SaveToFile {
     //*TODO* [] Zapis wszystkiego do jednego pliku json.
     //*TODO* [] Dopisanie do klas metod toJson().
-    public void SaveToFile(FlowerShop flowerShop, String fileName){
+    public void saveToFile(FlowerShop flowerShop, String fileName){
         Gson gson = new GsonBuilder().setDateFormat("yyyyMMdd").setPrettyPrinting().create();
         try {
             Writer writer = Files.newBufferedWriter(Paths.get(fileName +".json"));
@@ -27,7 +24,7 @@ public class SaveToFile {
         }
     }
 
-    public FlowerShop ReadFromFile(String fileName){
+    public FlowerShop readFromFile(String fileName){
             Gson gson = new GsonBuilder().setDateFormat("yyyyMMdd").setPrettyPrinting().create();
             FlowerShop flowerShopFromFile = null;
         try {
@@ -57,8 +54,8 @@ public class SaveToFile {
         System.out.println("#############################################################");
         ////TEST JSON\\\\
         SaveToFile FlowerShopsDB = new SaveToFile();
-        FlowerShopsDB.SaveToFile(GunNRoses,"GunNRoses");
-        System.out.println(FlowerShopsDB.ReadFromFile("GunNRoses"));
+        FlowerShopsDB.saveToFile(GunNRoses,"GunNRoses");
+        System.out.println(FlowerShopsDB.readFromFile("GunNRoses"));
         }
 
 
