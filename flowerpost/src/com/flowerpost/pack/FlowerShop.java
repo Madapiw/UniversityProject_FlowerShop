@@ -189,11 +189,11 @@ public class FlowerShop {
                     chosenID = Integer.parseInt(scanner.nextLine());
                     stockIndex = checkFlowerFromStockObjectForID(chosenID);
                     if (Objects.equals(this.stock[stockIndex].disposalDate.toString(), dateFlower.disposalDate.toString())) {
-                        SyntheticFlower tempSynthethicFlower = (SyntheticFlower)((SyntheticFlower)this.stock[stockIndex]).clone();
+                        Flowers tempSynthethicFlower = this.stock[stockIndex].clone();
                         tempSynthethicFlower.setQuantity(1);
                         order.addFlowersToOrder(tempSynthethicFlower);
                     } else {
-                        NaturalFlower tempNaturalFlower = (NaturalFlower)((NaturalFlower)this.stock[stockIndex]).clone();
+                        Flowers tempNaturalFlower = this.stock[stockIndex].clone();
                         tempNaturalFlower.setQuantity(1);
                         order.addFlowersToOrder(tempNaturalFlower);
                     }
@@ -223,7 +223,7 @@ public class FlowerShop {
                                 System.out.println("Podaj ilość kwiatów:");
                                 buquetFlowersQuantity = Integer.parseInt(scanner.nextLine());
                                 if (Objects.equals(this.stock[stockIndex].disposalDate.toString(), dateFlower.disposalDate.toString())) {
-                                    SyntheticFlower tempSynthethicFlower = (SyntheticFlower)((SyntheticFlower)this.stock[stockIndex]).clone();
+                                    Flowers tempSynthethicFlower = this.stock[stockIndex].clone();
                                     tempSynthethicFlower.quantity = buquetFlowersQuantity;
                                     boolean temp = true;
                                     for(Flowers item : bouquetOrdered.bouquet){
@@ -236,7 +236,7 @@ public class FlowerShop {
                                         bouquetOrdered.addFlower(tempSynthethicFlower);
                                     }
                                 } else {
-                                    NaturalFlower tempNaturalFlower = (NaturalFlower)((NaturalFlower)this.stock[stockIndex]).clone();
+                                    Flowers tempNaturalFlower = this.stock[stockIndex].clone();
                                     tempNaturalFlower.quantity = buquetFlowersQuantity;
                                     boolean temp = true;
                                     for(Flowers item : bouquetOrdered.bouquet){
@@ -277,9 +277,6 @@ public class FlowerShop {
                     System.out.println("Zamówienie usunięte.");
                 }
             }
-            System.out.println(Arrays.toString(this.stock));
-            System.out.println(order.toString());
-            System.out.println(Arrays.toString(this.stockOrders));
         }
     }
 

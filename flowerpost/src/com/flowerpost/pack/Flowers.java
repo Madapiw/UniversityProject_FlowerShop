@@ -1,6 +1,6 @@
 package com.flowerpost.pack;
 
-public class Flowers extends Flower{
+public class Flowers extends Flower implements Cloneable{
     public int quantity;
 
     public int getQuantity() {
@@ -47,4 +47,14 @@ public class Flowers extends Flower{
                 '}';
     }
 
+    @Override
+    public Flowers clone() {
+        try {
+            Flowers clone = (Flowers) super.clone();
+            // TODO: copy mutable state here, so the clone can't change the internals of the original
+            return clone;
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError();
+        }
+    }
 }
