@@ -1,0 +1,43 @@
+{
+  "flowerShopAddress": {
+    "postalCode": "98101",
+    "townName": "Seattle",
+    "streetName": "Cobain",
+    "buildingNumber": "27"
+  },
+  "phoneNumber": "222123456",
+  "stock": [
+    {
+      "quantity": 13,
+      "name": "rose",
+      "colour": "red",
+      "availability": false,
+      "price": 12.5,
+      "deliveryDate": "20220212",
+      "id": "0212372",
+      "disposalDate": "20211220"
+    },
+    {
+      "quantity": 30,
+      "name": "rose",
+      "colour": "red",
+      "availability": false,
+      "price": 12.5,
+      "deliveryDate": "20211219",
+      "id": "1219816",
+      "disposalDate": "20220119"
+    },
+    {
+      "materialType": "plastic",
+      "quantity": 15,
+      "name": "rose",
+      "colour": "white",
+      "availability": false,
+      "price": 7.5,
+      "deliveryDate": "20211219",
+      "id": "1219175",
+      "disposalDate": "19970101"
+    }
+  ],
+  "stockOrders": []
+}

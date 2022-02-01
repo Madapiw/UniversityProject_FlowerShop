@@ -8,23 +8,25 @@ public class Main {
     public void running(){
         boolean running = true;
         Date today = new Date();
+        SaveToFile saveToFile = new SaveToFile();
         Scanner scanner = new Scanner(System.in);
-        Flower dateFlower = new Flower("", "", "", "19970101");
-
+        Flower dateFlower = new Flower("", "", 0, "19970101");
+        FlowerShop runningFlowerShop = null;
         System.out.println("Witaj! Dzisiejszy dzień: " + today);
-        int option = 1;
+        int option = 0;
         while(running){
             switch (option + 1){
                 case 1:
-                    System.out.println("Wybierz kwiaciarnie: ");
-
-                    FlowerShop runningFlowerShop = (//WCZYTANIE Z PLIKU KWIACIARNI\\);
+                    System.out.println("Wybierz plik kwiaciarnie: ");
+                    //*TODO[] wypisać pliki z folderu
+                    String fileName = scanner.nextLine();
+                    runningFlowerShop = saveToFile.ReadFromFile(fileName);
                     break;
                 case 2:
                     //ZAPISANIE DO PLIKU AKTUALNEGO\\
                     System.out.println("Wybierz kwiaciarnie: ");
 
-                    FlowerShop runningFlowerShop = (//WCZYTANIE Z PLIKU KWIACIARNI\\);
+                    //FlowerShop runningFlowerShop = (//WCZYTANIE Z PLIKU KWIACIARNI\\);
                     break;
                 case 3:
                     System.out.println("Magazyn kwiatów:");
@@ -79,5 +81,10 @@ public class Main {
             System.out.println("5. Zakończ działanie programu.");
             option = Integer.parseInt(scanner.nextLine());
         }
+    }
+
+    public static void main(String[] args) {
+        Main main = new Main();
+        main.running();
     }
 }

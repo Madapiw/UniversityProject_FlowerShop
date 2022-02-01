@@ -4,10 +4,12 @@ import com.google.gson.GsonBuilder;
 import org.json.*;
 import com.google.gson.Gson;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.Reader;
 import java.io.Writer;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 
@@ -25,15 +27,19 @@ public class SaveToFile {
         }
     }
 
-    public void ReadFromFile(String fileName){
-            Gson gson = new Gson();
+    public FlowerShop ReadFromFile(String fileName){
+            Gson gson = new GsonBuilder().setDateFormat("yyyyMMdd").setPrettyPrinting().create();
+            FlowerShop flowerShopFromFile = null;
         try {
-            Reader reader = Files.newBufferedReader(Paths.get(fileName + ".json"));
-            FlowerShop flowerShopFromFile = gson.fromJson(reader,FlowerShop.class);
+            Path inputFilePath = Paths.get(fileName+".json");
+            System.out.println(inputFilePath.toAbsolutePath());
+            Reader reader = Files.newBufferedReader(Path.of(String.valueOf(inputFilePath.toAbsolutePath())));
+            flowerShopFromFile = gson.fromJson(reader,FlowerShop.class);
             reader.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return flowerShopFromFile;
     }
 
     ////TEST\\\\
@@ -41,21 +47,19 @@ public class SaveToFile {
         FlowerShop[] flowershops;
         Address GunNRosesAddress = new Address("98101", "Seattle", "Cobain", "27");
         FlowerShop GunNRoses = new FlowerShop(GunNRosesAddress, "222123456");
-        Address TESTSHOP = new Address("29183","WWA","Grzybowa","56a");
-        FlowerShop TESTFLOWERSHOP = new FlowerShop(TESTSHOP,"21372137");
+
         NaturalFlower Rose19122021 = new NaturalFlower("rose", "red", 30, 12.50F, "20211219", "20220119");
         SyntheticFlower PlasticRose = new SyntheticFlower("rose", "white", "plastic", 15, 7.50F,"20211219");
-        NaturalFlower Rose12122021 = new NaturalFlower("rose", "red", 13, 12.50F, "20211212", "20211220");
+        NaturalFlower Rose12122021 = new NaturalFlower("rose", "red", 13, 12.50F, "20220212", "20211220");
         GunNRoses.addFlowerToStock(Rose12122021);
         GunNRoses.addFlowerToStock(Rose19122021);
         GunNRoses.addFlowerToStock(PlasticRose);
-        TESTFLOWERSHOP.addFlowerToStock(Rose19122021);
-        System.out.println(Arrays.toString(GunNRoses.stock));
+//        System.out.println(Arrays.toString(GunNRoses.stock));
         System.out.println("#############################################################");
         ////TEST JSON\\\\
         SaveToFile FlowerShopsDB = new SaveToFile();
         FlowerShopsDB.SaveToFile(GunNRoses,"GunNRoses");
-
+        System.out.println(FlowerShopsDB.ReadFromFile("GunNRoses"));
         }
 
 
