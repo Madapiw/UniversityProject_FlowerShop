@@ -1,9 +1,6 @@
 package com.flowerpost.pack;
 
-import java.util.Arrays;
-import java.util.Date;
-import java.util.Objects;
-import java.util.Scanner;
+import java.util.*;
 
 public class FlowerShop {
     //Atrybuty Klasy\\
@@ -43,7 +40,12 @@ public class FlowerShop {
     public void removeFlowerObjectFromStock(String id) {
         for (int i = 0; i < this.stock.length; i++) {
             if (Objects.equals(stock[i].id, id)) {
-                stock[i] = null;
+                for (int j = i; j < this.stock.length -1;j++){
+                    this.stock[j] = this.stock[j+1];
+                }
+                Flowers[] newStock = new Flowers[this.stock.length -1];
+                System.arraycopy(this.stock,0,newStock,0,this.stock.length-1);
+                this.stock = newStock;
             }
         }
     }
@@ -196,6 +198,38 @@ public class FlowerShop {
         }
     }
 
+    public void createDelivery(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("\nPodaj date otrzymania dostawy w formacie RRRRMMDD:\t");
+        String deliveryDate = scanner.nextLine();
+        System.out.println("\nPodaj kod pocztowy do zamówienia:\t");
+        String postalCode = scanner.nextLine();
+        System.out.println("\nPodaj nazwę miasta do zamówienia:\t");
+        String townName = scanner.nextLine();
+        System.out.println("\nPodaj nazwę ulicy do zamówienia:\t");
+        String streetName = scanner.nextLine();
+        System.out.println("\nPodaj numer budynku do zamówienia:\t");
+        String buildingNumber = scanner.nextLine();
+        Delivery createDelivery = new Delivery(deliveryDate,postalCode,townName,streetName,buildingNumber);
+        while (true){
+            System.out.println("\n Zakończ? [y/n]:\t");
+            String end = scanner.nextLine();
+            if(end != "y" ||  end != "Y" || end != "yes" || end != "YES") {
+                break;
+            }
+            System.out.println("\nDodaj nazwe kwiatów:\t");
+            String flowersName = scanner.nextLine();
+            System.out.println("\nDodaj kolor kwiatów:\t");
+            String flowersColor = scanner.nextLine();
+            System.out.println("\nDodaj ilość kwiatów:\t");
+            String flowersQuantity = scanner.nextLine();
+            System.out.println("\nDodaj cene jednego kwiatu:\t");
+            String flowersPriceOfOne = scanner.nextLine();
+            Date dateNow = new Date(Calendar.getInstance().getTime().getTime());
+           // createDelivery.addFlower(new Flowers(flowersName,flowersColor,flowersQuantity,flowersPriceOfOne,));
+        }
+
+    }
 
     //TEST
     public  static void main(String[] args){

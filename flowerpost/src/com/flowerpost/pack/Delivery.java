@@ -2,11 +2,10 @@ package com.flowerpost.pack;
 
 import java.sql.Date;
 import java.text.ParseException;
-import java.util.Calendar;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 public class Delivery {
-
 
     public Date deliveryDate;
     Flowers[] deliveryItems = new Flowers[0];
@@ -71,6 +70,8 @@ public class Delivery {
             item.setDeliveryDate(parts[0] + parts[1] + parts[2]);
         }
     }
+
+
     //*TODO* [ ] Dodać metodę usuwającą pozycję z zamówienia*\\
 
     public Delivery(String deliveryDateRRRRMMDD, String postalCodeDestination, String townNameDestination, String streetNameDestination, String buildingNumberDestination) {
