@@ -33,14 +33,11 @@ public class Delivery {
         String date = parts[0] + parts[1] + parts[2] + parts[3] + "-" + parts[4] + parts[5] + "-" + parts[6] + parts[7];
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         Date dateGetTime = new Date(Calendar.getInstance().getTime().getTime());
-
         java.util.Date dateOfDelivery = format.parse(date);
         java.util.Date dateOfNow = format.parse(String.valueOf(dateGetTime));
-
         if (dateOfNow.compareTo(dateOfDelivery) > 0 ){
             throw new ParseException("Delivery date is in the past",69420);
         }
-//        System.out.println(date);
         deliveryDate = Date.valueOf(date);
 
         for(Flowers item : deliveryItems){
@@ -89,10 +86,10 @@ public class Delivery {
             err.printStackTrace();
         }
         this.setDeliveryDestination(postalCodeDestination, townNameDestination, streetNameDestination, buildingNumberDestination);
-        //Automatycznie wygenerowane "unikatowe" ID\\ *TODO* [ ] zrobić bardziej unikatowe, żeby bazowało na każdej cesze
-        String iD;
+        //Automatycznie wygenerowane "unikatowe" ID\\
+        // *TODO* [ ] zrobić bardziej unikatowe, żeby bazowało na każdej cesze
         String[] parts = deliveryDateRRRRMMDD.split("");
-        iD = parts[0] + parts[1] + parts[2] + parts[3] + parts[4] + parts[5] + parts[6] + parts[7]
+        String iD = parts[0] + parts[1] + parts[2] + parts[3] + parts[4] + parts[5] + parts[6] + parts[7]
                 + ((int)Math.floor(Math.random()*10)) + ((int)Math.floor(Math.random()*10)) + ((int)Math.floor(Math.random()*10));
         this.id = iD;
         this.phoneNumberFlowerShop = phoneNumberFlowerShop;
