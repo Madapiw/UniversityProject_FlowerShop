@@ -348,6 +348,14 @@ public class FlowerShop {
             }
     }
 
+    public void completeOrder(String ID){
+        for(Order order : stockOrders){
+            if(Objects.equals(order.id, ID)){
+                order.completed = true;
+            }
+        }
+    }
+
     //TEST
     public  static void main(String[] args){
         Address GunNRosesAddress = new Address("98101", "Seattle", "Cobain", "27");

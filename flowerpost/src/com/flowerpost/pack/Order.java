@@ -13,6 +13,7 @@ public class Order {
     public String noteToOrder;
     public String noteToReceiver;
     public float price;
+    public boolean completed = false;
 
     //Gettery i Settery\\
 
@@ -119,7 +120,7 @@ public class Order {
         //Automatycznie wygenerowane "unikatowe" ID\\ *TODO* [ ] zrobić bardziej unikatowe, żeby bazowało na każdej cesze
         String iD;
         String[] parts = orderSubmitDateRRRRMMDD.split("");
-        iD = parts[0] + parts[1] + parts[2] + parts[3] + parts[4] + parts[5] + parts[6] + parts[7]
+        iD = parts[4] + parts[5] + parts[6] + parts[7]
                 + ((int)Math.floor(Math.random()*10)) + ((int)Math.floor(Math.random()*10)) + ((int)Math.floor(Math.random()*10));
         this.id = iD;
         this.setOrderExecutionAddress(postalCode,townName,streetName,buildingNumber);
