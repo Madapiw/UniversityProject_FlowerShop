@@ -62,25 +62,21 @@ public class FlowerShop {
         }
     }
 
-    //Metoda sprawdzająca czy jest na stanie Obiekt kwiat spełniający założenia\\
-    public boolean checkFlowerFromStockObject(Flowers flowers) {
-        for (Flowers flowersStocked : this.stock) {
-            if (Objects.equals(flowersStocked.name, flowers.name)
-                    && Objects.equals(flowersStocked.colour, flowers.colour)
-                    && Objects.equals(flowersStocked.availability, flowers.availability)
-                    && Objects.equals(flowersStocked.availability, true)
-                    && (flowersStocked.quantity >= flowers.quantity)) {
-                return true;
+    //Metoda sprawdzająca czy jest na stanie Obiekt kwiat o danym ID\\
+    public int checkFlowerFromStockObjectForID(int id) {
+        for (int i = 0; i < this.stock.length; i++) {
+            if (Objects.equals(stock[i].id, String.valueOf(id))){
+                return i;
             }
         }
-        return false;
+        return 9999;
     }
 
     //Metoda utylizująca przeterminowane kwiaty\\
     public String utilize(){
         Date today = new Date();
         Flowers[] utilizedFlowers = new NaturalFlower[0];
-        Flower dateFlower = new Flower("date", "date", 0,"20200202");
+        Flower dateFlower = new Flower("date", "date", 0,"19970101");
         for (Flowers flowers : stock) {
             if (!Objects.equals(flowers.disposalDate.toString(), dateFlower.disposalDate.toString())) {
                 if ((flowers).getDisposalDate().before(today)) {
@@ -155,8 +151,49 @@ public class FlowerShop {
         noteToReceiver = scanner.nextLine();
         Order order = new Order("20201212", orderExecutionDate, postalCode, townName, streetName, buildingNumber, noteToOrder, noteToReceiver);
         order.orderSubmitDate = orderSubmitDateSql;
+        boolean running = true;
+        Flower dateFlower = new Flower("date", "date", 0,"19970101");
+        int option;
+        int chosenID;
+        int stockIndex;
+        NaturalFlower tempNaturalFlower = new NaturalFlower("temp", "temp", 0, 0, "19970101", "19970101");
+        SyntheticFlower tempSynthethicFlower = new SyntheticFlower("temp", "temp", "temp", 0, 0, "19970101");
+        while (running) {
+            System.out.println("Wybierz opcję:");
+            System.out.println("1. Dodaj kwiat do zamówienia.");
+            System.out.println("2. Dodaj bukiet do zamówienia.");
+            System.out.println("3. Zakończ składanie zamówienia i je wykonaj.");
+            System.out.println("4. Zakończ składanie zamówienia i je usuń.");
+            option = Integer.parseInt(scanner.nextLine());
+            switch (option) {
+                case 1: {
+                    System.out.println("Wybierz id kwiatu który zostanie dodany do zamówienia.");
+                    for(Flowers flowers : stock){
+                        if(flowers.availability){
+                            System.out.println("\nNazwa: " + flowers.name + "\tKolor: " + flowers.colour + "\tCena: "  + flowers.price + "\tID: "  + flowers.id);
+                        }
+                    }
+                    chosenID = Integer.parseInt(scanner.nextLine());
+                    stockIndex = checkFlowerFromStockObjectForID(chosenID);
+                    if(Objects.equals(this.stock[stockIndex].disposalDate.toString(), dateFlower.disposalDate.toString())){
+                        tempSynthethicFlower = (SyntheticFlower) this.stock[stockIndex];
+                        order.addFlowersToOrder(tempSynthethicFlower);
+                    } else{
+                        tempNaturalFlower = (NaturalFlower) this.stock[stockIndex];
+                        order.addFlowersToOrder(tempNaturalFlower);
+                    }
+                    if(this.stock[stockIndex].quantity == 1){
+                        removeFlowerObjectFromStock(String.valueOf(chosenID));
+                    }else{
+                        this.stock[stockIndex].quantity = this.stock[stockIndex].quantity - 1;
+                    }
+                }
+                case 2: {
 
+                }
 
+            }
+        }
     }
 
 

@@ -103,10 +103,10 @@ class Flower {
         String iD;
         String[] parts = deliveryDateRRRRMMDD.split("");
         if(parts.length == 8){
-            iD = parts[0] + parts[1] + parts[2] + parts[3] + parts[4] + parts[5] + parts[6] + parts[7]
+            iD = parts[4] + parts[5] + parts[6] + parts[7]
                     + ((int)Math.floor(Math.random()*10)) + ((int)Math.floor(Math.random()*10)) + ((int)Math.floor(Math.random()*10));
         }else {
-            iD = "1997" + "01" + "01" + ((int)Math.floor(Math.random()*10)) + ((int)Math.floor(Math.random()*10)) + ((int)Math.floor(Math.random()*10));
+            iD = "01" + "01" + ((int)Math.floor(Math.random()*10)) + ((int)Math.floor(Math.random()*10)) + ((int)Math.floor(Math.random()*10));
         }
         this.id = iD;
         this.setDisposalDate("19970101");
