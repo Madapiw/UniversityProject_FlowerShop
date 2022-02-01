@@ -40,11 +40,10 @@ public class FlowersBouquet {
             if (flowers.id == id) {
                 System.out.println("Deleted flowers: " + flowers.name + " ID: " + flowers.id + " Quantity: " + quantity);
                 if (flowers.quantity > quantity) flowers.quantity -= quantity;
-                else if (flowers.quantity <= quantity) {
+                else {
                     Flowers[] bouquetWithoutDeleted = new Flowers[bouquet1Length -1];
-                    for(int j = i; j < bouquet1Length -1;j++){
-                        bouquet1[j] = bouquet1[j+1];
-                    }
+                    if (bouquet1Length - 1 - i >= 0)
+                        System.arraycopy(bouquet1, i + 1, bouquet1, i, bouquet1Length - 1 - i);
                     System.arraycopy(bouquet1,0,bouquetWithoutDeleted,0, bouquet1Length-1);
                     this.bouquet = bouquetWithoutDeleted;
                 }

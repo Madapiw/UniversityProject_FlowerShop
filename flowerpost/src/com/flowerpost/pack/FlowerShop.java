@@ -7,6 +7,7 @@ public class FlowerShop {
     public final Address flowerShopAddress;
     public final int phoneNumber;
     Flowers[] stock = new Flowers[0];
+    Order[] stockOrders = new Order[0];
 
     //Gettery i Settery\\
     public Address getFlowerShopAddress() {
@@ -27,7 +28,17 @@ public class FlowerShop {
         this.phoneNumber = phoneNumber;
     }
 
-    //Metoda dodająca pozycję do magazynu\\
+    //Metoda dodająca pozycję do magazynu zamówień\\
+    public void addFlowerToStockOrders(Order order){
+        int newArraySize = this.stockOrders.length + 1;
+        Order[] biggerArray = new Order[newArraySize];
+        System.arraycopy(this.stockOrders, 0, biggerArray, 0, stockOrders.length);
+        biggerArray[newArraySize - 1] = order;
+        this.stockOrders = biggerArray;
+    }
+
+
+    //Metoda dodająca pozycję do magazynu kwiatów\\
     public void addFlowerToStock(Flowers flowersObject) {
         int newArraySize = this.stock.length + 1;
         Flowers[] biggerArray = new Flowers[newArraySize];
@@ -154,10 +165,14 @@ public class FlowerShop {
         Order order = new Order("20201212", orderExecutionDate, postalCode, townName, streetName, buildingNumber, noteToOrder, noteToReceiver);
         order.orderSubmitDate = orderSubmitDateSql;
         boolean running = true;
+        boolean buquetRunning = true;
         Flower dateFlower = new Flower("date", "date", 0,"19970101");
         int option;
+        int buquetOption;
         int chosenID;
         int stockIndex;
+        int buquetFlowersQuantity;
+        FlowersBouquet bouquetOrdered = new FlowersBouquet();
         NaturalFlower tempNaturalFlower = new NaturalFlower("temp", "temp", 0, 0, "19970101", "19970101");
         SyntheticFlower tempSynthethicFlower = new SyntheticFlower("temp", "temp", "temp", 0, 0, "19970101");
         while (running) {
@@ -168,34 +183,91 @@ public class FlowerShop {
             System.out.println("4. Zakończ składanie zamówienia i je usuń.");
             option = Integer.parseInt(scanner.nextLine());
             switch (option) {
-                case 1: {
+                case 1:
                     System.out.println("Wybierz id kwiatu który zostanie dodany do zamówienia.");
-                    for(Flowers flowers : stock){
-                        if(flowers.availability){
-                            System.out.println("\nNazwa: " + flowers.name + "\tKolor: " + flowers.colour + "\tCena: "  + flowers.price + "\tID: "  + flowers.id);
+                    for (Flowers flowers : stock) {
+                        if (flowers.availability) {
+                            System.out.println("\nNazwa: " + flowers.name + "\tKolor: " + flowers.colour + "\tCena: " + flowers.price + "\tDostępna ilość:" + flowers.quantity + "\tID: " + flowers.id);
                         }
                     }
                     chosenID = Integer.parseInt(scanner.nextLine());
                     stockIndex = checkFlowerFromStockObjectForID(chosenID);
-                    if(Objects.equals(this.stock[stockIndex].disposalDate.toString(), dateFlower.disposalDate.toString())){
+                    if (Objects.equals(this.stock[stockIndex].disposalDate.toString(), dateFlower.disposalDate.toString())) {
                         tempSynthethicFlower = (SyntheticFlower) this.stock[stockIndex];
+                        tempSynthethicFlower.setQuantity(1);
                         order.addFlowersToOrder(tempSynthethicFlower);
-                    } else{
+                    } else {
                         tempNaturalFlower = (NaturalFlower) this.stock[stockIndex];
+                        tempNaturalFlower.setQuantity(1);
                         order.addFlowersToOrder(tempNaturalFlower);
                     }
-                    if(this.stock[stockIndex].quantity == 1){
+                    this.stock[stockIndex].removeQuantity(1);
+                    System.out.println("|||" + this.stock[stockIndex].quantity + "|||");
+                    if (this.stock[stockIndex].quantity == 0) {
                         removeFlowerObjectFromStock(String.valueOf(chosenID));
-                    }else{
-                        this.stock[stockIndex].quantity = this.stock[stockIndex].quantity - 1;
                     }
-                }
-                case 2: {
-
-                }
-
+                    break;
+                case 2:
+                    buquetRunning = true;
+                    while (buquetRunning) {
+                        bouquetOrdered = new FlowersBouquet();
+                        System.out.println("Wybierz opcję:");
+                        System.out.println("1. Dodaj kwiaty do bukietu.");
+                        System.out.println("2. Skończ tworzyć bukiet i dodaj do zamówienia.");
+                        buquetOption = Integer.parseInt(scanner.nextLine());
+                        switch (buquetOption) {
+                            case 1:
+                                System.out.println("Wybierz id kwiatu który zostanie dodany do bukietu.");
+                                for (Flowers flowers : stock) {
+                                    if (flowers.availability) {
+                                        System.out.println("\nNazwa: " + flowers.name + "\tKolor: " + flowers.colour + "\tCena: " + flowers.price + "\tDostępna ilość:" + flowers.quantity + "\tID: " + flowers.id);
+                                    }
+                                }
+                                chosenID = Integer.parseInt(scanner.nextLine());
+                                stockIndex = checkFlowerFromStockObjectForID(chosenID);
+                                System.out.println("Podaj ilość kwiatów:");
+                                buquetFlowersQuantity = Integer.parseInt(scanner.nextLine());
+                                if (Objects.equals(this.stock[stockIndex].disposalDate.toString(), dateFlower.disposalDate.toString())) {
+                                    tempSynthethicFlower = (SyntheticFlower) this.stock[stockIndex];
+                                    tempSynthethicFlower.quantity = buquetFlowersQuantity;
+                                    bouquetOrdered.addFlower(tempSynthethicFlower);
+                                } else {
+                                    tempNaturalFlower = (NaturalFlower) this.stock[stockIndex];
+                                    tempNaturalFlower.quantity = buquetFlowersQuantity;
+                                    bouquetOrdered.addFlower(tempNaturalFlower);
+                                }
+                                if (this.stock[stockIndex].quantity == buquetFlowersQuantity) {
+                                    removeFlowerObjectFromStock(String.valueOf(chosenID));
+                                } else {
+                                    this.stock[stockIndex].quantity = this.stock[stockIndex].quantity - buquetFlowersQuantity;
+                                }
+                                System.out.println("Kwiaty w twoim bukiecie:");
+                                for (Flowers flowers : bouquetOrdered.bouquet) {
+                                    System.out.println(flowers.quantity + " " + flowers.name + " " + flowers.colour);
+                                }
+                                break;
+                            case 2:
+                                order.addBouquetToOrder(bouquetOrdered);
+                                buquetRunning = false;
+                                System.out.println("Dodano bukiet do zamówienia.");
+                                break;
+                        }
+                    }
+                    break;
+                case 3:
+                    running = false;
+                    this.addFlowerToStockOrders(order);
+                    System.out.println("Dodano zamówienie do realizacji.");
+                    break;
+                case 4:
+                    running = false;
+                    order.clearOrder();
+                    System.out.println("Zamówienie usunięte.");
+                    break;
             }
             System.out.println(Arrays.toString(this.stock));
+            System.out.println(order.toString());
+            System.out.println(Arrays.toString(this.stockOrders));
         }
     }
 
@@ -236,21 +308,21 @@ public class FlowerShop {
     public  static void main(String[] args){
         Address GunNRosesAddress = new Address("98101", "Seattle", "Cobain", "27");
         FlowerShop GunNRoses = new FlowerShop(GunNRosesAddress, 222123456);
-//        NaturalFlower Rose19122021 = new NaturalFlower("rose", "red", 30, 12.50F, "20211219", "20220119");
-//        SyntheticFlower PlasticRose = new SyntheticFlower("rose", "white", "plastic", 15, 7.50F,"20211219");
-//        NaturalFlower Rose12122021 = new NaturalFlower("rose", "red", 13, 12.50F, "20211212", "20211220");
-//        Rose19122021.setAvailability(true);
-//        Rose12122021.setAvailability(true);
-//        PlasticRose.setAvailability(true);
-//        GunNRoses.addFlowerToStock(Rose12122021);
-//        GunNRoses.addFlowerToStock(Rose19122021);
-//        GunNRoses.addFlowerToStock(PlasticRose);
-//
-//        System.out.println(GunNRoses.utilize());
-//        System.out.println(Arrays.toString(GunNRoses.stock));
+        NaturalFlower Rose19122021 = new NaturalFlower("rose", "red", 30, 12.50F, "20211219", "20220119");
+        SyntheticFlower PlasticRose = new SyntheticFlower("rose", "white", "plastic", 15, 7.50F,"20211219");
+        NaturalFlower Rose12122021 = new NaturalFlower("rose", "red", 13, 12.50F, "20211212", "20211220");
+        Rose19122021.setAvailability(true);
+        Rose12122021.setAvailability(true);
+        PlasticRose.setAvailability(true);
+        GunNRoses.addFlowerToStock(Rose12122021);
+        GunNRoses.addFlowerToStock(Rose19122021);
+        GunNRoses.addFlowerToStock(PlasticRose);
 
-        GunNRoses.createDelivery();
-        //GunNRoses.createOrder();
+        System.out.println(GunNRoses.utilize());
+        System.out.println(Arrays.toString(GunNRoses.stock));
+
+//        GunNRoses.createDelivery();
+        GunNRoses.createOrder();
 
 //        System.out.println("=======================================================================");
 //

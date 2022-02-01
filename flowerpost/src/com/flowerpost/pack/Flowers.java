@@ -25,9 +25,6 @@ public class Flowers extends Flower{
     public void removeQuantity(int quantity){
         int currentQuantity = this.getQuantity();
         this.setQuantity(currentQuantity - quantity);
-        if(this.getQuantity() < 0){
-            setQuantity(0);
-        }
     }
 
     public Flowers(String name, String colour, int quantity, float price, String deliveryDateRRRRMMDD) {
