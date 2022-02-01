@@ -5,7 +5,7 @@ import org.json.JSONObject;
 
 import java.sql.Date;
 
-public class NaturalFlower extends Flowers{
+public class NaturalFlower extends Flowers implements Cloneable{
 
     //Dodatkowy parametr\\
 
@@ -21,10 +21,11 @@ public class NaturalFlower extends Flowers{
     }
 
     //Konstruktor\\
-    public NaturalFlower(String name, String colour, int quantity, float price, String deliveryDateRRRRMMDD, String disposalDateRRRRMMDD) {
+    public NaturalFlower(String name, String colour, int quantity, float price, String deliveryDateRRRRMMDD, String disposalDateRRRRMMDD){
         super(name, colour, quantity, price, deliveryDateRRRRMMDD);
         this.setDisposalDate(disposalDateRRRRMMDD);
     }
+
 
     public JSONObject toJson(){
         JSONObject NaturalFlowersJsonObj = new JSONObject();
@@ -62,5 +63,14 @@ public class NaturalFlower extends Flowers{
         NaturalFlower Rose19122021 = new NaturalFlower("rose", "red", 30, 12.50F, "20211219", "20220119");
 //        System.out.println(Rose19122021);
         Rose19122021.setDisposalDate("20220118");
+    }
+
+    @Override
+    public NaturalFlower clone() {
+        try {
+            return (NaturalFlower) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError();
+        }
     }
 }

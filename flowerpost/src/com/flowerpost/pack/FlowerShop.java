@@ -37,7 +37,6 @@ public class FlowerShop {
         this.stockOrders = biggerArray;
     }
 
-
     //Metoda dodająca pozycję do magazynu kwiatów\\
     public void addFlowerToStock(Flowers flowersObject) {
         int newArraySize = this.stock.length + 1;
@@ -172,9 +171,6 @@ public class FlowerShop {
         int chosenID;
         int stockIndex;
         int buquetFlowersQuantity;
-        FlowersBouquet bouquetOrdered = new FlowersBouquet();
-        NaturalFlower tempNaturalFlower = new NaturalFlower("temp", "temp", 0, 0, "19970101", "19970101");
-        SyntheticFlower tempSynthethicFlower = new SyntheticFlower("temp", "temp", "temp", 0, 0, "19970101");
         while (running) {
             System.out.println("Wybierz opcję:");
             System.out.println("1. Dodaj kwiat do zamówienia.");
@@ -183,7 +179,7 @@ public class FlowerShop {
             System.out.println("4. Zakończ składanie zamówienia i je usuń.");
             option = Integer.parseInt(scanner.nextLine());
             switch (option) {
-                case 1:
+                case 1 -> {
                     System.out.println("Wybierz id kwiatu który zostanie dodany do zamówienia.");
                     for (Flowers flowers : stock) {
                         if (flowers.availability) {
@@ -193,30 +189,29 @@ public class FlowerShop {
                     chosenID = Integer.parseInt(scanner.nextLine());
                     stockIndex = checkFlowerFromStockObjectForID(chosenID);
                     if (Objects.equals(this.stock[stockIndex].disposalDate.toString(), dateFlower.disposalDate.toString())) {
-                        tempSynthethicFlower = (SyntheticFlower) this.stock[stockIndex];
+                        SyntheticFlower tempSynthethicFlower = (SyntheticFlower)((SyntheticFlower)this.stock[stockIndex]).clone();
                         tempSynthethicFlower.setQuantity(1);
                         order.addFlowersToOrder(tempSynthethicFlower);
                     } else {
-                        tempNaturalFlower = (NaturalFlower) this.stock[stockIndex];
+                        NaturalFlower tempNaturalFlower = (NaturalFlower)((NaturalFlower)this.stock[stockIndex]).clone();
                         tempNaturalFlower.setQuantity(1);
                         order.addFlowersToOrder(tempNaturalFlower);
                     }
                     this.stock[stockIndex].removeQuantity(1);
-                    System.out.println("|||" + this.stock[stockIndex].quantity + "|||");
                     if (this.stock[stockIndex].quantity == 0) {
                         removeFlowerObjectFromStock(String.valueOf(chosenID));
                     }
-                    break;
-                case 2:
+                }
+                case 2 -> {
                     buquetRunning = true;
+                    FlowersBouquet bouquetOrdered = new FlowersBouquet();
                     while (buquetRunning) {
-                        bouquetOrdered = new FlowersBouquet();
                         System.out.println("Wybierz opcję:");
                         System.out.println("1. Dodaj kwiaty do bukietu.");
                         System.out.println("2. Skończ tworzyć bukiet i dodaj do zamówienia.");
                         buquetOption = Integer.parseInt(scanner.nextLine());
                         switch (buquetOption) {
-                            case 1:
+                            case 1 -> {
                                 System.out.println("Wybierz id kwiatu który zostanie dodany do bukietu.");
                                 for (Flowers flowers : stock) {
                                     if (flowers.availability) {
@@ -228,42 +223,59 @@ public class FlowerShop {
                                 System.out.println("Podaj ilość kwiatów:");
                                 buquetFlowersQuantity = Integer.parseInt(scanner.nextLine());
                                 if (Objects.equals(this.stock[stockIndex].disposalDate.toString(), dateFlower.disposalDate.toString())) {
-                                    tempSynthethicFlower = (SyntheticFlower) this.stock[stockIndex];
+                                    SyntheticFlower tempSynthethicFlower = (SyntheticFlower)((SyntheticFlower)this.stock[stockIndex]).clone();
                                     tempSynthethicFlower.quantity = buquetFlowersQuantity;
-                                    bouquetOrdered.addFlower(tempSynthethicFlower);
+                                    boolean temp = true;
+                                    for(Flowers item : bouquetOrdered.bouquet){
+                                        if(Objects.equals(item.id, tempSynthethicFlower.id)){
+                                            item.addQuantity(buquetFlowersQuantity);
+                                            temp = false;
+                                        }
+                                    }
+                                    if(temp){
+                                        bouquetOrdered.addFlower(tempSynthethicFlower);
+                                    }
                                 } else {
-                                    tempNaturalFlower = (NaturalFlower) this.stock[stockIndex];
+                                    NaturalFlower tempNaturalFlower = (NaturalFlower)((NaturalFlower)this.stock[stockIndex]).clone();
                                     tempNaturalFlower.quantity = buquetFlowersQuantity;
-                                    bouquetOrdered.addFlower(tempNaturalFlower);
+                                    boolean temp = true;
+                                    for(Flowers item : bouquetOrdered.bouquet){
+                                        if(Objects.equals(item.id, tempNaturalFlower.id)){
+                                            item.addQuantity(buquetFlowersQuantity);
+                                            temp = false;
+                                        }
+                                    }
+                                    if(temp){
+                                        bouquetOrdered.addFlower(tempNaturalFlower);
+                                    }
                                 }
-                                if (this.stock[stockIndex].quantity == buquetFlowersQuantity) {
+                                this.stock[stockIndex].removeQuantity(buquetFlowersQuantity);
+                                if (this.stock[stockIndex].quantity == 0) {
                                     removeFlowerObjectFromStock(String.valueOf(chosenID));
-                                } else {
-                                    this.stock[stockIndex].quantity = this.stock[stockIndex].quantity - buquetFlowersQuantity;
                                 }
                                 System.out.println("Kwiaty w twoim bukiecie:");
                                 for (Flowers flowers : bouquetOrdered.bouquet) {
                                     System.out.println(flowers.quantity + " " + flowers.name + " " + flowers.colour);
                                 }
-                                break;
-                            case 2:
+                            }
+                            case 2 -> {
                                 order.addBouquetToOrder(bouquetOrdered);
                                 buquetRunning = false;
                                 System.out.println("Dodano bukiet do zamówienia.");
-                                break;
+                            }
                         }
                     }
-                    break;
-                case 3:
+                }
+                case 3 -> {
                     running = false;
                     this.addFlowerToStockOrders(order);
                     System.out.println("Dodano zamówienie do realizacji.");
-                    break;
-                case 4:
+                }
+                case 4 -> {
                     running = false;
                     order.clearOrder();
                     System.out.println("Zamówienie usunięte.");
-                    break;
+                }
             }
             System.out.println(Arrays.toString(this.stock));
             System.out.println(order.toString());

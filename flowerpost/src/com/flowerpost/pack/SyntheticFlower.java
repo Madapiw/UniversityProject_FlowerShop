@@ -3,7 +3,7 @@ package com.flowerpost.pack;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class SyntheticFlower extends Flowers{
+public class SyntheticFlower extends Flowers implements Cloneable{
 
     @Override
     public String toString() {
@@ -49,4 +49,14 @@ public class SyntheticFlower extends Flowers{
         return  SyntheticFlowersJsonObj;
     }
 
+    @Override
+    public SyntheticFlower clone() {
+        try {
+            SyntheticFlower clone = (SyntheticFlower) super.clone();
+            // TODO: copy mutable state here, so the clone can't change the internals of the original
+            return clone;
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError();
+        }
+    }
 }
