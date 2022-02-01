@@ -11,10 +11,6 @@ public class SyntheticFlower extends Flowers implements Cloneable{
                 "Dostępnośc: " + this.availability + "\t" + "Data dostawy: " + this.deliveryDate + "\t" + "Ilość: " + this.quantity);
     }
 
-
-
-    public final String materialType;
-
     public SyntheticFlower(String name, String colour, String materialType, int quantity, float price, String deliveryDateRRRRMMDD) {
         super(name, colour, quantity, price, deliveryDateRRRRMMDD);
 

@@ -1,0 +1,94 @@
+{
+  "flowerShopAddress": {
+    "postalCode": "98101",
+    "townName": "Seattle",
+    "streetName": "Cobain",
+    "buildingNumber": "27"
+  },
+  "phoneNumber": "222123456",
+  "stock": [
+    {
+      "quantity": 13,
+      "name": "rose",
+      "colour": "red",
+      "availability": true,
+      "price": 12.5,
+      "deliveryDate": "20211212",
+      "id": "1212810",
+      "disposalDate": "20211220"
+    },
+    {
+      "quantity": 30,
+      "name": "rose",
+      "colour": "red",
+      "availability": true,
+      "price": 12.5,
+      "deliveryDate": "20211219",
+      "id": "1219923",
+      "disposalDate": "20220119"
+    },
+    {
+      "quantity": 14,
+      "name": "rose",
+      "colour": "white",
+      "availability": true,
+      "price": 7.5,
+      "deliveryDate": "20211219",
+      "id": "1219862",
+      "disposalDate": "19970101",
+      "materialType": "plastic"
+    },
+    {
+      "quantity": 30,
+      "name": "rose",
+      "colour": "pink",
+      "availability": false,
+      "price": 12.5,
+      "deliveryDate": "20220324",
+      "id": "0101390",
+      "disposalDate": "20220119"
+    },
+    {
+      "quantity": 15,
+      "name": "rose",
+      "colour": "blue",
+      "availability": false,
+      "price": 7.5,
+      "deliveryDate": "20220324",
+      "id": "0101058",
+      "disposalDate": "19970101",
+      "materialType": "plastic"
+    }
+  ],
+  "stockOrders": [
+    {
+      "orderSubmitDate": "20220201",
+      "orderExecutionDate": "20220212",
+      "orderedFlowers": [
+        {
+          "quantity": 1,
+          "name": "rose",
+          "colour": "white",
+          "availability": true,
+          "price": 7.5,
+          "deliveryDate": "20211219",
+          "id": "1219862",
+          "disposalDate": "19970101",
+          "materialType": "plastic"
+        }
+      ],
+      "orderedBouquets": [],
+      "id": "1212879",
+      "orderExecutionAddress": {
+        "postalCode": "123411",
+        "townName": "WWA",
+        "streetName": "nowowiejsa",
+        "buildingNumber": "13b"
+      },
+      "noteToOrder": "",
+      "noteToReceiver": "",
+      "price": 7.5,
+      "completed": false
+    }
+  ]
+}
