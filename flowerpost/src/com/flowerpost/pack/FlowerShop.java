@@ -215,7 +215,7 @@ public class FlowerShop {
         while (true){
             System.out.println("\n Zakończ? [y/n]:\t");
             String end = scanner.nextLine();
-            if(end != "y" ||  end != "Y" || end != "yes" || end != "YES") {
+            if(end == "Y" ||  end == "y" || end == "yes" || end == "YES") {
                 break;
             }
             System.out.println("\nDodaj nazwe kwiatów:\t");
@@ -227,29 +227,30 @@ public class FlowerShop {
             System.out.println("\nDodaj cene jednego kwiatu:\t");
             String flowersPriceOfOne = scanner.nextLine();
             Date dateNow = new Date(Calendar.getInstance().getTime().getTime());
-           // createDelivery.addFlower(new Flowers(flowersName,flowersColor,flowersQuantity,flowersPriceOfOne,));
+            createDelivery.addFlower(new Flowers(flowersName,flowersColor,Integer.parseInt(flowersQuantity),Float.valueOf(flowersPriceOfOne).floatValue(),deliveryDate));
         }
-
+        this.addDelivery(createDelivery);
     }
 
     //TEST
     public  static void main(String[] args){
         Address GunNRosesAddress = new Address("98101", "Seattle", "Cobain", "27");
         FlowerShop GunNRoses = new FlowerShop(GunNRosesAddress, 222123456);
-        NaturalFlower Rose19122021 = new NaturalFlower("rose", "red", 30, 12.50F, "20211219", "20220119");
-        SyntheticFlower PlasticRose = new SyntheticFlower("rose", "white", "plastic", 15, 7.50F,"20211219");
-        NaturalFlower Rose12122021 = new NaturalFlower("rose", "red", 13, 12.50F, "20211212", "20211220");
-        Rose19122021.setAvailability(true);
-        Rose12122021.setAvailability(true);
-        PlasticRose.setAvailability(true);
-        GunNRoses.addFlowerToStock(Rose12122021);
-        GunNRoses.addFlowerToStock(Rose19122021);
-        GunNRoses.addFlowerToStock(PlasticRose);
+//        NaturalFlower Rose19122021 = new NaturalFlower("rose", "red", 30, 12.50F, "20211219", "20220119");
+//        SyntheticFlower PlasticRose = new SyntheticFlower("rose", "white", "plastic", 15, 7.50F,"20211219");
+//        NaturalFlower Rose12122021 = new NaturalFlower("rose", "red", 13, 12.50F, "20211212", "20211220");
+//        Rose19122021.setAvailability(true);
+//        Rose12122021.setAvailability(true);
+//        PlasticRose.setAvailability(true);
+//        GunNRoses.addFlowerToStock(Rose12122021);
+//        GunNRoses.addFlowerToStock(Rose19122021);
+//        GunNRoses.addFlowerToStock(PlasticRose);
+//
+//        System.out.println(GunNRoses.utilize());
+//        System.out.println(Arrays.toString(GunNRoses.stock));
 
-        System.out.println(GunNRoses.utilize());
-        System.out.println(Arrays.toString(GunNRoses.stock));
-
-        GunNRoses.createOrder();
+        GunNRoses.createDelivery();
+        //GunNRoses.createOrder();
 
 //        System.out.println("=======================================================================");
 //
